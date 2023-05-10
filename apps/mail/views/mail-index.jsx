@@ -10,6 +10,7 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 export function MailIndex() {
 
     const [emails, setEmails] = useState([])
+
     useEffect(() => {
         loadEmails()
         showSuccessMsg('helooooo')
@@ -19,12 +20,13 @@ export function MailIndex() {
     }, [])
 
     function loadEmails() {
-        emailService.query().then(setEmails(emails))
+        emailService.query().then(setEmails)
         // emailService.query(filterBy).then(cars => setCars(cars))
         // carService.query().then(setCars)
+        console.log(emails)
     }
 
-    console.log(emails)
+    if (!emails || !emails.length) return <div> Loading ...</div>
 
     return (
 

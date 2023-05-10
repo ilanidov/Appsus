@@ -10,7 +10,10 @@ export const emailService = {
     _createEmails,
     query
 }
+
 _createEmails()
+
+
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
     return storageService.query(EMAIL_KEY)
@@ -65,6 +68,7 @@ function _createEmails() {
         _createEmail(),
         _createEmail(),
     ]
+    
     localStorageService.saveToStorage(EMAIL_KEY, emails)
     return emails
 }
