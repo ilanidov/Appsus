@@ -1,11 +1,11 @@
 // note service
 
 
-// import { utilService } from '../../../services/util.service'
 import { storageService } from '../../../services/async-storage.service.js'
+import { localStorageService } from '../../../services/storage.service.js'
 
-const NOTES_KEY = 'carDB'
-// _createNotes()
+const NOTES_KEY = 'noteDB'
+_createNotes()
 
 export const noteService = {
     query,
@@ -18,16 +18,16 @@ export const noteService = {
     addNewNote
 }
 
-function addNewNote(userNote){
+function addNewNote(userNote) {
     const note = {
-        createdAt: 10,
+        createdAt: 2023,
         type: 'NoteTxt',
         isPinned: true,
-        style: { backgroundColor: '#00d'} ,
-        info: { txt: userNote }
+        style: { backgroundColor: '#00d' },
+        info: { title: userNote }
     }
     // console.log(note)
-   return storageService.post(NOTES_KEY , note)
+    return storageService.post(NOTES_KEY, note)
 
 }
 
@@ -37,17 +37,17 @@ function addNewNote(userNote){
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
     return storageService.query(NOTES_KEY)
-        // .then(cars => {
-        //     if (filterBy.txt) {
-        //         const regExp = new RegExp(filterBy.txt, 'i')
-        //         cars = cars.filter(car => regExp.test(car.vendor))
-        //     }
+    // .then(cars => {
+    //     if (filterBy.txt) {
+    //         const regExp = new RegExp(filterBy.txt, 'i')
+    //         cars = cars.filter(car => regExp.test(car.vendor))
+    //     }
 
-        //     if (filterBy.minSpeed) {
-        //         cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-        //     }
-        //     return cars
-        // })
+    //     if (filterBy.minSpeed) {
+    //         cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
+    //     }
+    //     return cars
+    // })
 }
 
 function get(carId) {
@@ -71,24 +71,24 @@ function getNextCarId(carId) {
     return storageService.query(CAR_KEY)
         .then((cars) => {
             let carIdx = cars.findIndex(car => car.id === carId)
-            if(carIdx === cars.length - 1) carIdx = -1
+            if (carIdx === cars.length - 1) carIdx = -1
             return cars[carIdx + 1].id
         })
 }
 
 function getEmptyNote() {
-    return   {
+    return {
         // id: 'n101',
-        createdAt,
+        createdAt:2023,
         type: 'NoteTxt',
         isPinned: true,
         style: {
-        backgroundColor: '#00d'
+            backgroundColor: '#00d'
         },
         info: {
-            txt: ''
-            }
-}
+            title: ''
+        }
+    }
 }
 
 function getDefaultFilter(searchParams = { get: () => { } }) {
@@ -99,58 +99,89 @@ function getDefaultFilter(searchParams = { get: () => { } }) {
 }
 
 function _createNotes() {
-    let notes = utilService.loadFromStorage(NOTES_KEY)
+    let notes = localStorageService.loadFromStorage(NOTES_KEY)
     if (!notes || !notes.length) {
-        // cars = []
-        // cars.push(_createCar('audu', 300))
-        // cars.push(_createCar('fiak', 120))
-        // cars.push(_createCar('subali', 50))
-        // cars.push(_createCar('mitsu', 150))
-        utilService.saveToStorage(CAR_KEY, _createDemoNote())
+        const notes = _createDemoNote()
+        localStorageService.saveToStorage(NOTES_KEY, notes)
     }
 }
 
 function _createDemoNote() {
-    // const car = getEmptyCar(vendor, maxSpeed)
-    // car.id = utilService.makeId()
 
     const demoNotes = [
         {
-        id: 'n101',
-        createdAt: 1112222,
-        type: 'NoteTxt',
-        isPinned: true,
-        style: {
-        backgroundColor: '#00d'
-        },
-        info: {
-        txt: 'Fullstack Me Baby!'
-        }
-        },
-        {
-        id: 'n102',
-        type: 'NoteImg',
-        isPinned: false,
-        info: {
-        url: 'http://some-img/me',
-        title: 'Bobi and Me'
-        },
-        style: {
-        backgroundColor: '#00d'
-        }
+            id: 'n101',
+            createdAt: 1112222,
+            type: 'NoteTxt',
+            isPinned: true,
+            style: {
+                backgroundColor: '#00d'
+            },
+            info: {
+                title: 'Fullstack Me Baby!'
+            }
         },
         {
-        id: 'n103',
-        type: 'NoteTodos',
-        isPinned: false,
-        info: {
-        title: 'Get my stuff together',
-        todos: [
-        { txt: 'Driving license', doneAt: null },
-        { txt: 'Coding power', doneAt: 187111111 }
-        ]
-        }
-        }
-        ]
+            id: 'n102',
+            type: 'NoteImg',
+            isPinned: false,
+            info: {
+                url: 'http://some-img/me',
+                title: 'Bobi and Me'
+            },
+            style: {
+                backgroundColor: '#00d'
+            }
+        },
+        {
+            id: 'n103',
+            type: 'NoteTodos',
+            isPinned: false,
+            info: {
+                title: 'Get my stuff together',
+                todos: [
+                    { txt: 'Driving license', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        } ,
+        {
+            id: 'n104',
+            type: 'NoteTodos',
+            isPinned: false,
+            info: {
+                title: 'Pet details',
+                todos: [
+                    { txt: 'Driving license', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        } ,
+        {
+            id: 'n105',
+            type: 'NoteTodos',
+            isPinned: false,
+            info: {
+                title: 'Monday',
+                todos: [
+                    { txt: 'Driving license', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        } ,
+        {
+            id: 'n106',
+            type: 'NoteTodos',
+            isPinned: false,
+            info: {
+                title: 'Sunday',
+                todos: [
+                    { txt: 'Driving license', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        } ,
+
+    ]
     return demoNotes
 }

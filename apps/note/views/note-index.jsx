@@ -20,23 +20,30 @@ export function NoteIndex() {
     useEffect(() => {
         loadNotes()
         showSuccessMsg('Welcome to book index!')
-        console.log(notes)
     }, [])
 
 
 
-
     function loadNotes() {
-        noteService.query().then(notes => setNotes(notes))
+        noteService.query().then(notes => {
+            setNotes(notes)
+            console.log(notes)
+        })
+
         // carService.query().then(setCars)    <---   SHORT WAY
     }
 
+    console.log(notes)
+    if (!notes || !notes.length) return <div>Loading...</div>
 
-    return <div>
+    return (
+    <div>
         note app
         <br />
         <NoteBox />
+        <NotesList notes={notes}/>
         {/* <NotesList /> */}
 
     </div>
+    )
 }

@@ -2,19 +2,19 @@
 
 
 
-export function NotesList(notes){
+export function NotesList({ notes }) {
+    console.log(notes)
 
 
-
-   return (
-   <section className="notes-container">
-        {notes.map(note => 
-             <article className="single-note">
-                 {note}
-                 {/* note preview */}
-             </article>
+    return (
+        <ul className="notes-list">
+            {notes.map(note =>
+                <li key={note.id}>
+                    {note.info.title}
+                </li>
             )}
 
-    </section>
-        )
+        </ul>
+    )
+
 }
