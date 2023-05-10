@@ -1,5 +1,5 @@
 export function NoteList() {
     
-    console.log('start')
+    console.log('st')
     return <div>note list</div>
 }
