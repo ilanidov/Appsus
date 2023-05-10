@@ -2,13 +2,27 @@
 
 
 
-export function MailList() {
+export function MailList({emails}) {
 
 
 
 
 
-    return <div>Mail list</div>
+    return (
+        <div className="mails-container">
+            {emails.map(email=>{
+                return(
+                    <div className="email-container">
+                        <span className="star"></span>
+                        <h1>{email.from}</h1>
+                        <h4>{email.body}</h4>
+                        <span>{email.sentAt}</span>
+
+                    </div>
+                )
+            })}
+        </div>
+    )
 
 
 }

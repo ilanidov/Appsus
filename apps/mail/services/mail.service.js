@@ -1,12 +1,30 @@
 // mail service
 import { utilService } from "../../../services/util.service.js"
+import { storageService } from "../../../services/async-storage.service.js"
+import { localStorageService } from "../../../services/storage.service.js" 
 
 const EMAIL_KEY = 'emailDB'
 
-
 export const emailService = {
     getEmptyEmail,
-    _createEmails
+    _createEmails,
+    query
+}
+_createEmails()
+function query(filterBy = {}) {
+    // console.log('filterBy service:', filterBy)
+    return storageService.query(EMAIL_KEY)
+        .then(emails => {
+            // if (filterBy.txt) {
+            //     const regExp = new RegExp(filterBy.txt, 'i')
+            //     cars = cars.filter(car => regExp.test(car.vendor))
+            // }
+
+            // if (filterBy.minSpeed) {
+            //     cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
+            // }
+            return emails
+        })
 }
 
 
@@ -37,8 +55,8 @@ function getEmptyEmail() {
     }
 }
 
-function _createEmails(){
-    const emails =[
+function _createEmails() {
+    const emails = [
         _createEmail(),
         _createEmail(),
         _createEmail(),
@@ -47,6 +65,7 @@ function _createEmails(){
         _createEmail(),
         _createEmail(),
     ]
+    localStorageService.saveToStorage(EMAIL_KEY, emails)
     return emails
 }
 
