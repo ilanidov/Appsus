@@ -1,1 +1,38 @@
  /* mail index  */
+
+
+.mail-layout{
+    height: 100%;
+}
+
+.main-content{
+    height: 100vh;
+}
+
+ .mail-nav-bar {
+    background-color: rgb(174, 231, 231);
+     width: 100%;
+     height: 2em;
+     align-items: center;
+ }
+
+ .nav-expand-btn {
+     width: 2em;
+ }
+
+ .logo-img {
+     width: 2em;
+ }
+
+ .nav-options{
+    height: 100%;
+    background-color: rgb(174, 231, 231);
+    flex-direction: column;
+ }
+
+ .mails-container{
+    width: 100%;
+    background-color: rgb(180, 180, 222);
+ }
+
+
