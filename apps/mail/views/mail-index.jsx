@@ -1,11 +1,30 @@
+const { useEffect, useState } = React
+const { Link, useSearchParams } = ReactRouterDOM
+
+
 import { MailList } from "../cmps/mail-list.jsx"
 import { emailService } from "../services/mail.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 
 export function MailIndex() {
 
+    const [emails, setEmails] = useState([])
+    useEffect(() => {
+        loadEmails()
+        showSuccessMsg('helooooo')
+        // showSuccessMsg('Welcome to car index!')
+        // setSearchParams(filterBy)
+        // }, [filterBy])
+    }, [])
 
+    function loadEmails() {
+        emailService.query().then(setEmails(emails))
+        // emailService.query(filterBy).then(cars => setCars(cars))
+        // carService.query().then(setCars)
+    }
 
+    console.log(emails)
 
     return (
 
@@ -41,12 +60,13 @@ export function MailIndex() {
                     <Link>Trash</Link> */}
                 </section>
 
-                <div className="mails-container">
-                    <MailList></MailList>
-                </div>
+                {/* <div className="mails-container"> */}
+                <MailList emails={emails} />
+                {/* </div> */}
+                {/* <div className="mails-container">
+                    <DataTable emails={emails} />
+                </div> */}
             </div>
-
-
         </div>
     )
 }
