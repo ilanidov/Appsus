@@ -1,36 +1,53 @@
 // note service
 
 
-import { utilService } from '../../../services/util.service'
+// import { utilService } from '../../../services/util.service'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTES_KEY = 'carDB'
-_createNotes()
+// _createNotes()
 
 export const noteService = {
     query,
     get,
     remove,
     save,
-    getEmptyCar,
+    getEmptyNote,
     getDefaultFilter,
-    getNextCarId
+    getNextCarId,
+    addNewNote
 }
+
+function addNewNote(userNote){
+    const note = {
+        createdAt: 10,
+        type: 'NoteTxt',
+        isPinned: true,
+        style: { backgroundColor: '#00d'} ,
+        info: { txt: userNote }
+    }
+    // console.log(note)
+   return storageService.post(NOTES_KEY , note)
+
+}
+
+
+
 
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
-    return storageService.query(CAR_KEY)
-        .then(cars => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                cars = cars.filter(car => regExp.test(car.vendor))
-            }
+    return storageService.query(NOTES_KEY)
+        // .then(cars => {
+        //     if (filterBy.txt) {
+        //         const regExp = new RegExp(filterBy.txt, 'i')
+        //         cars = cars.filter(car => regExp.test(car.vendor))
+        //     }
 
-            if (filterBy.minSpeed) {
-                cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-            }
-            return cars
-        })
+        //     if (filterBy.minSpeed) {
+        //         cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
+        //     }
+        //     return cars
+        // })
 }
 
 function get(carId) {
@@ -42,8 +59,8 @@ function remove(carId) {
     return storageService.remove(CAR_KEY, carId)
 }
 
-function save(car) {
-    if (car.id) {
+function save(note) {
+    if (note.id) {
         return storageService.put(CAR_KEY, car)
     } else {
         return storageService.post(CAR_KEY, car)
@@ -59,8 +76,19 @@ function getNextCarId(carId) {
         })
 }
 
-function getEmptyCar(vendor = '', maxSpeed = '') {
-    return { id: '', vendor, maxSpeed }
+function getEmptyNote() {
+    return   {
+        // id: 'n101',
+        createdAt,
+        type: 'NoteTxt',
+        isPinned: true,
+        style: {
+        backgroundColor: '#00d'
+        },
+        info: {
+            txt: ''
+            }
+}
 }
 
 function getDefaultFilter(searchParams = { get: () => { } }) {
