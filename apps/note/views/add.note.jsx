@@ -5,6 +5,7 @@ const { Link, useSearchParams } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouterDOM
 
 
+import { ColorInput } from "../cmps/color-input.jsx"
 
 import { NotesList } from "../cmps/notes.list.jsx"
 import { storageService } from "../../../services/async-storage.service.js"
@@ -17,7 +18,10 @@ import { AddTodoNote } from "../cmps/todos.note.jsx"
 
 export function AddNote({ loadNotes }) {
 
-
+    const [noteStyle, setNoteStyle] = useState({
+        backgroundColor: 'none',
+        fontSize: '16px'
+    })
     // const [searchParams, setSearchParams] = useSearchParams()
     // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
     const [notes, setNotes] = useState([])
@@ -34,14 +38,19 @@ export function AddNote({ loadNotes }) {
     //     setFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
     // }
 
+    function onSetNoteStyle(newStyle) {
+        setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
+        setNewNote(prevNote => ({ ...prevNote, style: noteStyle} ))
+        // console.log(noteStyle)
+    }
+    
     function onSetNewNote(noteToEdit) {
-        console.log(noteToEdit)
+        noteToEdit.style = noteStyle
         noteService.save(noteToEdit)
-            .then(() => {
-                setNewNote(noteToEdit)
+        .then(() => {
+            setNewNote(noteToEdit)
                 showSuccessMsg('saved')
                 navigate('/note')
-                // onSetNewNote(noteToEdit)
             })
             .catch(err => {
                 console.log('Had issued in note edit:', err);
@@ -53,14 +62,16 @@ export function AddNote({ loadNotes }) {
     return (
         <section className="note-options">
 
-            <select class="options" onChange={(ev) => { setCmpType(ev.target.value) }}>
+            <select className="options" onChange={(ev) => { setCmpType(ev.target.value) }}>
                 <option value="txt">txt</option>
                 <option value="image">image</option>
                 <option value="video">video</option>
                 <option value="todos">todos</option>
             </select>
-         
-            <DynamicCmp cmpType={cmpType}  onSetNewNote={onSetNewNote} />
+            <section>
+        <ColorInput onSetNoteStyle={onSetNoteStyle} />
+        </section>
+            <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
 
             {/* <AddTxtNote onSetNewNote={onSetNewNote} /> */}
         

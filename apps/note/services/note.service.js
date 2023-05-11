@@ -44,7 +44,7 @@ function getEmptyNote(type) {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#FFD59E'
                 },
                 info: {
                     title: ''
@@ -60,7 +60,7 @@ function getEmptyNote(type) {
                     title: ''
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#F9FFA4'
                 }
             }
 
@@ -68,6 +68,9 @@ function getEmptyNote(type) {
                 return {
                     type: 'NoteTodos',
                     isPinned: false,
+                    style: {
+                        backgroundColor: '#FFA1A1'
+                    },
                     info: {
                         title: '',
                         todos: []
@@ -157,7 +160,7 @@ function _createDemoNote() {
             type: 'NoteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: ''
             },
             info: {
                 title: 'Fullstack Me Baby!'
@@ -172,13 +175,16 @@ function _createDemoNote() {
                 title: 'Bobi and Me'
             },
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#F9FFA4'
             }
         },
         {
             id: 'n103',
             type: 'NoteTodos',
             isPinned: false,
+            style: {
+                backgroundColor: ''
+            },
             info: {
                 title: 'Get my stuff together',
                 todos: [
@@ -191,6 +197,9 @@ function _createDemoNote() {
             id: 'n104',
             type: 'NoteTodos',
             isPinned: false,
+            style: {
+                backgroundColor: '#FFA1A1'
+            },
             info: {
                 title: 'Pets',
                 todos: [
@@ -203,6 +212,9 @@ function _createDemoNote() {
             id: 'n105',
             type: 'NoteTodos',
             isPinned: false,
+            style: {
+                backgroundColor: '#FFA1A1'
+            },
             info: {
                 title: 'Monday',
                 todos: [
@@ -215,6 +227,9 @@ function _createDemoNote() {
             id: 'n106',
             type: 'NoteTodos',
             isPinned: false,
+            style: {
+                backgroundColor: '#FFA1A1'
+            },
             info: {
                 title: 'Sunday',
                 todos: [

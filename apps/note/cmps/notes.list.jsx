@@ -7,7 +7,7 @@ export function NotesList({ notes, onRemoveNote }) {
     return (
         <ul className="notes-list">
             {notes.map(note =>
-                <li key={note.id}>
+                <li key={note.id}  style={note.style}>
                     {/* {console.log(note)} */}
                     {note.type === 'NoteTxt' && <h2>{note.info.title}</h2>}
 

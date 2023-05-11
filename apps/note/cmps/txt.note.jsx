@@ -4,29 +4,22 @@ const { useParams, useNavigate } = ReactRouterDOM
 
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-import { ColorInput } from "./color-input.jsx"
 
 
-export function AddTxtNote({onSetNewNote}) {
-    const [noteStyle, setNoteStyle] = useState({
-        backgroundColor: 'none',
-        fontSize: '16px'
-    })
+export function AddTxtNote({onSetNewNote , noteStyle}) {
 
-    const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('txt'))
-    const inputRef = useRef()
-    // const navigate = useNavigate()
-    // const params = useParams()
 
-    function onSetNoteStyle(newStyle) {
-        setNoteStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
-    }
+const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('txt'))
+const inputRef = useRef()
+
 
     function handleChange({ target }) {
-        setNoteToAdd(prevNote => ({ ...prevNote, info: {...prevNote.info , title: target.value} }))
-        // console.log(noteToEdit)
-    }
+        setNoteToAdd(prevNote => ({ ...prevNote, style: noteStyle} ))
 
+        setNoteToAdd(prevNote => ({ ...prevNote, info: {...prevNote.info , title: target.value} }))
+        console.log(noteToAdd)
+    }
+    
     function onSaveNote(ev) {
         // console.log(noteToEdit)
         ev.preventDefault()
@@ -34,7 +27,6 @@ export function AddTxtNote({onSetNewNote}) {
     }
 
     
-
     return (
         <section  className="note-add">
 
@@ -45,9 +37,7 @@ export function AddTxtNote({onSetNewNote}) {
                 <button>add</button>
 
 
-            <section>
-        <ColorInput onSetNoteStyle={onSetNoteStyle} />
-        </section>
+    
             </form>
         </section>
     )
