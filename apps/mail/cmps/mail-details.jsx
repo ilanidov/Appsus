@@ -8,12 +8,20 @@ export function EmailDetails({ onCloseMail, email }) {
     if (!email) return <div>Loading.....</div>
 
     return (
-        <div>
-            <div>{email.from}</div>
-            <div>{email.subject}</div>
+        <div className="email-display">
+            <div className="flex">
+                <h1>{email.from} </h1>
+                <button onClick={() => onCloseMail()}>Back</button>
+            </div>
+
+            <div>
+                <h2> {email.subject}</h2>
+                <h2>{email.sentAt}</h2>
+            </div>
+
             <div>{email.body}</div>
 
-            <button onClick={() => onCloseMail()}>Back</button>
+
         </div>
     )
 }

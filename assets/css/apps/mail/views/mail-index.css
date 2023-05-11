@@ -1,54 +1,47 @@
  /* mail index  */
 
 
-.mail-layout{
-    height: 100%;
-}
+ .mail-layout {
+     height: 100%;
+ }
 
-.main-content{
-    height: 100vh;
-}
+ .main-content {
+     height: 100vh;
+ }
 
  .mail-nav-bar {
-    background-color: rgb(174, 231, 231);
      width: 100%;
-     height: 2em;
+     height: 4.5em;
      align-items: center;
      background-color: var(--clr0);
  }
 
  .nav-expand-btn {
      width: 2em;
-
  }
 
  .logo-img {
      width: 2em;
+     height: 2em;
  }
 
- .nav-options{
-    height: 100%;
-    background-color: var(--clr0);
-    flex-direction: column;
+ .nav-options {
+     height: 100%;
+     background-color: var(--clr0);
+     flex-direction: column;
+     width: 80px;
+     align-items: center;
  }
 
- .mails-container{
-    width: 100%;
-    background-color: rgb(180, 180, 222);
+ .mails-container {
+     width: 100%;
+     background-color: var(--clr1);
  }
 
- .email-container{
-    display: grid;
-    grid-template-columns: 50px 50px 150px 1fr 150px 70px;
-    border-bottom: 1px solid black;
-    align-items: center;
+ .email-container {
+     display: grid;
+     grid-template-columns: 50px 50px 150px 1fr 150px 70px;
+     border-bottom: 1px solid black;
+     align-items: center;
  }
-
- .is-read{
-    color: rgb(194, 87, 87);
- }
-
-
-
-
 
