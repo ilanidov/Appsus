@@ -1,38 +1,39 @@
-const { Link } = ReactRouterDOM
-const { useEffect, useState } = React
-
-import { emailService } from "../services/mail.service.js"
-
 
 
 export function MailList({ emails, onDeleteEmail, onOpenMail }) {
-    const [isRead, setIsRead] = useState(false)
-    const [currMail, setCurrMail] = useState({})
-
 
     function handleOpenMail(email) {
         email.isRead = true
-
         onOpenMail(email)
-        // setCurrMail(email)
- 
     }
 
+    function addTimeAgo(email) {
+        const now = new Date().getTime()
+        const timestamp = email.sentAt
+        const diff = now - timestamp
+        const minute = 60 * 1000
+        const hour = 60 * minute
+        const day = 24 * hour
+        let timeAgo
 
-    function setMailProperty(mailId) {
-
+        if (diff < minute) {
+            timeAgo = Math.floor(diff / 1000) + " seconds ago"
+        } else if (diff < hour) {
+            timeAgo = Math.floor(diff / minute) + " minutes ago"
+        } else if (diff < day) {
+            timeAgo = Math.floor(diff / hour) + " hours ago"
+        } else {
+            timeAgo = Math.floor(diff / day) + " days ago"
+        }
+        return timeAgo
     }
-
-
-    // const dynReadClass = isRead ? '' : "is-read"
-
-
-
 
     return (
         <div className="mails-container">
             {emails.map(email => {
                 const dynReadClass = email.isRead ? '' : "is-read"
+                const timePass = addTimeAgo(email)
+                console.log(timePass)
                 return (
                     <div>
                         <div onClick={() => handleOpenMail(email)} key={email.id} className={`email-container flex ${dynReadClass}`}>
@@ -43,7 +44,7 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
                             <h3>{email.from}</h3>
                             <h3>{email.subject}</h3>
                             <h4>{email.body}</h4>
-                            <span>{email.sentAt}</span>
+                            <span>{timePass}</span>
                             <div className="email-btns">
                                 <button onClick={() => onDeleteEmail(email.id)}>X</button>
                                 <button>RE</button>
@@ -56,6 +57,4 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
             })}
         </div>
     )
-
-
 }

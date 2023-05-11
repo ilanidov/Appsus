@@ -13,7 +13,7 @@
 @import './views/home.css';
 
 
-@import './apps/mail/views/mail-index.css';
+
 /*Note */
 @import './apps/note/views/note-index.css';
 
@@ -24,12 +24,17 @@
 
 
 /*Mail*/
+
+/* @import './apps/mail/views/mail-index.css'; */
 @import './apps/mail/views/mail-index.css';
 
+@import './apps/mail/cmps/mail-header.css';
+
+@import './apps/mail/cmps/mail-list.css';
+
+@import './apps/mail/cmps/mail-details.css';
 
 /* Cmps */
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
-@import './apps/mail/cmps/mail-list.css';
-@import './apps/mail/cmps/mail-details.css';
