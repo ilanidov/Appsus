@@ -70,10 +70,7 @@ function getEmptyNote(type) {
                     isPinned: false,
                     info: {
                         title: '',
-                        todos: [
-                            { txt: '', doneAt: null },
-                            { txt: '', doneAt: null }
-                        ]
+                        todos: []
                     }
 
 
