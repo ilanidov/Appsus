@@ -6,7 +6,10 @@ header {
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    /* padding: 20px 0; */
+    height: 64px;
+    align-items: center;
+    background-color: var(--clr2);
 }
 
 nav a {
