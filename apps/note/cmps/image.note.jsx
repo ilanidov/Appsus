@@ -19,31 +19,25 @@ export function AddImageNote({ onSetNewNote }) {
 
     function loadImageFromInput(ev) {
         const reader = new FileReader()
-        // After we read the file
         reader.onload = function (event) {
-            let img = new Image() // Create a new html img element
-            img.src = event.target.result // Set the img src to the img file we read
-            // Run the callBack func, To render the img on the canvas
-            // img.onload = onImageReady.bind(null, img)
-            // Can also do it this way:
-            // img.onload = () => onImageReady(img)
-            console.log(img.src)
+            let img = new Image() 
+            img.src = event.target.result 
             updateState(img.src)
         }
-        reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+        reader.readAsDataURL(ev.target.files[0]) 
 
     }
 
     function updateState(src) {
 
         const noteTitle = { url: src }
-        console.log(noteTitle)
+        // console.log(noteTitle)
         setNoteToEdit(prevBook => ({ ...prevBook, info: noteTitle }))
-        console.log(noteToEdit)
+        // console.log(noteToEdit)
     }
 
     function onSaveNote(ev) {
-        console.log(noteToEdit)
+        // console.log(noteToEdit)
         ev.preventDefault()
         onSetNewNote(noteToEdit)
     }

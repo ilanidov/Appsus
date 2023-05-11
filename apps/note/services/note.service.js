@@ -37,22 +37,22 @@ function addNewNote(userNote) {
 
 function getEmptyNote(type) {
 
-    switch (type ) {
+    switch (type) {
         case 'txt':
-        return {
-            createdAt:2023,
-            type: 'NoteTxt',
-            isPinned: true,
-            style: {
-                backgroundColor: '#00d'
-            },
-            info: {
-                title: ''
+            return {
+                createdAt: 2023,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    title: ''
+                }
             }
-    }
 
-    case 'image':
-        return {
+        case 'image':
+            return {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
@@ -62,10 +62,32 @@ function getEmptyNote(type) {
                 style: {
                     backgroundColor: '#00d'
                 }
-        }
+            }
+
+            case 'todo':
+                return {
+                    type: 'NoteTodos',
+                    isPinned: false,
+                    info: {
+                        title: '',
+                        todos: [
+                            { txt: '', doneAt: null },
+                            { txt: '', doneAt: null }
+                        ]
+                    }
+
+
+
+
+                }
+
+
+
+
+
+
 
     }
-
 }
 
 
@@ -73,17 +95,17 @@ function getEmptyNote(type) {
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
     return storageService.query(NOTES_KEY)
-    .then(notes => {
-        if (filterBy.title) {
-            const regExp = new RegExp(filterBy.title, 'i')
-            notes = notes.filter(car => regExp.test(book.info.title))
-        }
+        .then(notes => {
+            if (filterBy.title) {
+                const regExp = new RegExp(filterBy.title, 'i')
+                notes = notes.filter(car => regExp.test(book.info.title))
+            }
 
-        // if (filterBy.type) {
-        //     notes = notes.filter(car => car.maxSpeed >= filterBy.minSpeed)
-        // }
-        return notes
-    })
+            // if (filterBy.type) {
+            //     notes = notes.filter(car => car.maxSpeed >= filterBy.minSpeed)
+            // }
+            return notes
+        })
 }
 
 function get(carId) {
@@ -144,7 +166,7 @@ function _createDemoNote() {
                 title: 'Fullstack Me Baby!'
             }
         },
-        {   
+        {
             id: 'n102',
             type: 'NoteImg',
             isPinned: false,
@@ -167,19 +189,19 @@ function _createDemoNote() {
                     { txt: 'Coding power', doneAt: 187111111 }
                 ]
             }
-        } ,
+        },
         {
             id: 'n104',
             type: 'NoteTodos',
             isPinned: false,
             info: {
-                title: 'Pet details',
+                title: 'Pets',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { txt: 'Clean their beds', doneAt: null },
+                    { txt: 'Long walk', doneAt: null }
                 ]
             }
-        } ,
+        },
         {
             id: 'n105',
             type: 'NoteTodos',
@@ -187,11 +209,11 @@ function _createDemoNote() {
             info: {
                 title: 'Monday',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { txt: 'Gym', doneAt: null },
+                    { txt: 'Call the bank', doneAt: null }
                 ]
             }
-        } ,
+        },
         {
             id: 'n106',
             type: 'NoteTodos',
@@ -199,11 +221,11 @@ function _createDemoNote() {
             info: {
                 title: 'Sunday',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { txt: 'Guitar lesson', doneAt: null },
+                    { txt: 'Shoping', doneAt: null }
                 ]
             }
-        } ,
+        },
 
     ]
     return demoNotes

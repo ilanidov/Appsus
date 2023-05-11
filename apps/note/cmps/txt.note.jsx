@@ -8,7 +8,7 @@ import { noteService } from "../services/note.service.js"
 
 export function AddTxtNote({onSetNewNote}) {
 
-    const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('txt'))
     const inputRef = useRef()
     const navigate = useNavigate()
     const params = useParams()
@@ -17,18 +17,18 @@ export function AddTxtNote({onSetNewNote}) {
     //     onSetNewNote(noteToEdit)
     // }, [noteToEdit])
 
+    // setbookToEdit(prevBook => ({ ...prevBook, listPrice: { ...prevBook.listPrice, amount: value }, }))
 
 
     function handleChange({ target }) {
-        const noteTitle = { title: target.value }
-        setNoteToEdit(prevBook => ({ ...prevBook, info: noteTitle }))
+        setNoteToAdd(prevNote => ({ ...prevNote, info: {...prevNote.info , title: target.value} }))
         // console.log(noteToEdit)
     }
 
     function onSaveNote(ev) {
-        console.log(noteToEdit)
+        // console.log(noteToEdit)
         ev.preventDefault()
-        onSetNewNote(noteToEdit)
+        onSetNewNote(noteToAdd)
     }
 
     return (

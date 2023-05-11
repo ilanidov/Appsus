@@ -1,7 +1,6 @@
 
 const { Link } = ReactRouterDOM
 
-
 // import { CarPreview } from "./car-preview.jsx";
 
 export function NotesList({ notes, onRemoveNote }) {
@@ -9,11 +8,24 @@ export function NotesList({ notes, onRemoveNote }) {
         <ul className="notes-list">
             {notes.map(note =>
                 <li key={note.id}>
-                    {console.log(note)}
-                    {(note.type === 'NoteTxt') && note.info.title}
-                    {(note.type === 'NoteImg') && <img src={note.info.url} alt=" cover" /> }
-                    {(note.type === 'NoteImg')}
+                    {/* {console.log(note)} */}
+                    {note.type === 'NoteTxt' && <h2>{note.info.title}</h2>}
 
+                    {note.type === 'NoteImg' && <img src={note.info.url} alt=" cover" /> }
+
+                    {note.type === 'NoteTodos' && 
+                     <section>
+                     <h2>{note.info.title}</h2> 
+                    <ul className="note-todos">
+                        {note.info.todos.map(todo =>
+                    <section key={todo.txt+todo.doneAt}>
+                        <li> {todo.txt} </li>
+                  { todo.doneAt &&  <small>Done at: {todo.doneAt} </small> }      {/* CHECK BOX */}
+                         </section>
+                        )}
+                        </ul>
+                    </section>
+                } 
                     <section>
                         <button onClick={() => onRemoveNote(note.id)} >Remove</button>
                         <button><Link to={`/note/edit/${note.id}`} >Edit</Link></button>

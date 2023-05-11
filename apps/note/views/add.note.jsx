@@ -10,8 +10,9 @@ import { NotesList } from "../cmps/notes.list.jsx"
 import { storageService } from "../../../services/async-storage.service.js"
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-import { AddTxtNote } from "../cmps/txt-note.jsx"
+import { AddTxtNote } from "../cmps/txt.note.jsx"
 import { AddImageNote } from "../cmps/image.note.jsx"
+import { AddTodoNote } from "../cmps/todos.note.jsx"
 
 
 export function AddNote({ loadNotes }) {
@@ -34,6 +35,7 @@ export function AddNote({ loadNotes }) {
     // }
 
     function onSetNewNote(noteToEdit) {
+        console.log(noteToEdit)
         noteService.save(noteToEdit)
             .then(() => {
                 setNewNote(noteToEdit)
@@ -45,20 +47,9 @@ export function AddNote({ loadNotes }) {
                 console.log('Had issued in note edit:', err);
                 showErrorMsg('Can not save note!')
             })
-        console.log(newNote)
     }
 
 
-
-    // function onSetCmpType(ev) {
-    //     console.log(ev)
-    //     // ((ev) => setCmpType(ev.target.value))
-    // }
-
-
-    console.log(cmpType)
-
-    // console.log('render');
     return (
         <section className="note-options ">
 
@@ -69,10 +60,7 @@ export function AddNote({ loadNotes }) {
                 <option value="todos">todos</option>
             </select>
          
-
-
             <DynamicCmp cmpType={cmpType}  onSetNewNote={onSetNewNote} />
-
 
             {/* <AddTxtNote onSetNewNote={onSetNewNote} /> */}
         
@@ -89,6 +77,9 @@ function DynamicCmp(props) {
             return <AddTxtNote {...props} />
         case 'image':
             return <AddImageNote {...props} />
+        case 'todos' :
+            return < AddTodoNote {...props}  />
+
     }
 }
 
