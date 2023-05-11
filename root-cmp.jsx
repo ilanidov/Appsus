@@ -8,6 +8,8 @@ import { About } from "./views/about.jsx"
 import { Home } from "./views/home.jsx"
 import { MailIndex } from "./apps/mail/views/mail-index.jsx"
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
+// import { NoteEdit } from "./apps/note/views/note-edit.jsx";
+import { AddNote } from "./apps/note/views/add.note.jsx";
 
 
 
@@ -19,8 +21,13 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
-                <Route path="/note" element={<NoteIndex />} />
-            </Routes>
+
+
+                <Route path="/note" element={<NoteIndex />} >
+                    <Route path="/note/add" element={<AddNote/>}/>
+                    {/* <Route path="/note/edit/:noteId" element={<NoteEdit/>}/> */}
+            </Route>
+                </Routes>
 
 
             <UserMsg />

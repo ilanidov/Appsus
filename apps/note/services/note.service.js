@@ -19,6 +19,7 @@ export const noteService = {
 }
 
 function addNewNote(userNote) {
+    console.log(userNote)
     const note = {
         createdAt: 2023,
         type: 'NoteTxt',
@@ -31,50 +32,6 @@ function addNewNote(userNote) {
 
 }
 
-
-
-
-function query(filterBy = {}) {
-    // console.log('filterBy service:', filterBy)
-    return storageService.query(NOTES_KEY)
-    // .then(cars => {
-    //     if (filterBy.txt) {
-    //         const regExp = new RegExp(filterBy.txt, 'i')
-    //         cars = cars.filter(car => regExp.test(car.vendor))
-    //     }
-
-    //     if (filterBy.minSpeed) {
-    //         cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-    //     }
-    //     return cars
-    // })
-}
-
-function get(carId) {
-    return storageService.get(CAR_KEY, carId)
-    // return axios.get(CAR_KEY, carId)
-}
-
-function remove(carId) {
-    return storageService.remove(CAR_KEY, carId)
-}
-
-function save(note) {
-    if (note.id) {
-        return storageService.put(CAR_KEY, car)
-    } else {
-        return storageService.post(CAR_KEY, car)
-    }
-}
-
-function getNextCarId(carId) {
-    return storageService.query(CAR_KEY)
-        .then((cars) => {
-            let carIdx = cars.findIndex(car => car.id === carId)
-            if (carIdx === cars.length - 1) carIdx = -1
-            return cars[carIdx + 1].id
-        })
-}
 
 function getEmptyNote() {
     return {
@@ -91,10 +48,56 @@ function getEmptyNote() {
     }
 }
 
+
+
+function query(filterBy = {}) {
+    // console.log('filterBy service:', filterBy)
+    return storageService.query(NOTES_KEY)
+    .then(notes => {
+        if (filterBy.title) {
+            const regExp = new RegExp(filterBy.title, 'i')
+            notes = notes.filter(car => regExp.test(book.info.title))
+        }
+
+        // if (filterBy.type) {
+        //     notes = notes.filter(car => car.maxSpeed >= filterBy.minSpeed)
+        // }
+        return notes
+    })
+}
+
+function get(carId) {
+    return storageService.get(NOTES_KEY, carId)
+    // return axios.get(CAR_KEY, carId)
+}
+
+function remove(carId) {
+    return storageService.remove(NOTES_KEY, carId)
+}
+
+function save(note) {
+    if (note.id) {
+        return storageService.put(NOTES_KEY, note)
+    } else {
+        return storageService.post(NOTES_KEY, note)
+    }
+}
+
+function getNextCarId(carId) {
+    return storageService.query(NOTES_KEY)
+        .then((cars) => {
+            let carIdx = cars.findIndex(car => car.id === carId)
+            if (carIdx === cars.length - 1) carIdx = -1
+            return cars[carIdx + 1].id
+        })
+}
+
+
+
 function getDefaultFilter(searchParams = { get: () => { } }) {
     return {
-        txt: searchParams.get('txt') || '',
-        minSpeed: searchParams.get('minSpeed') || ''
+        title: searchParams.get('title') || '',
+        type: searchParams.get('type') || ''
     }
 }
 

@@ -7,7 +7,7 @@ import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.servic
 
 
 
-export function NoteBox() {
+export function NoteTxt() {
     const [note, setNote] = useState(noteService.getEmptyNote())
     const inputRef = useRef()
 
@@ -16,22 +16,33 @@ export function NoteBox() {
         showSuccessMsg('Welcome to notes-app!')
     }, [])
 
-    // function handleChange({ target }) {
-    //     const field = target.name
-    //     // const value = target.type === 'number' ? (+target.value || '') : target.value
-    //     setNote(prevNote => ({ ...prevNote, [field]: target.value }))
-    //     console.log(note)
-    // }
+
+//  function handleChange({ target }) {
+//         const field = target.name
+//         // console.log(field)
+//         const value = target.type === 'number' ? (+target.value || '') : target.value
+//         if (field === 'title') {
+//             setNote(prevBook => ({ ...prevBook, info:{...prevBook.info , title:value} , }))
+
+//         } else {
+//             setNote(prevBook => ({ ...prevBook, [field]: value }))
+//         }
+//     }
     
 
     function onSaveNote(ev) {
         ev.preventDefault()
         const noteContent = inputRef.current.value
-        setNote(noteContent)
+        // console.log(note)
+        // console.log(noteContent)
+
+            setNote(prevBook => ({ ...prevBook, info:{...prevBook.info , title:noteContent} , }))
+
         noteService.addNewNote(note)
-        .then((res) => {
+        .then(() => {
             showSuccessMsg('Note saved')
-            console.log(res)
+            // setNote(noteContent)
+
         })
         .catch(err => {
             console.log('Had issued in car edit:', err);
@@ -46,7 +57,7 @@ export function NoteBox() {
             <section className="note-box">
                 <form className="note-box-input" onSubmit={onSaveNote}  >
                     {/* <label htmlFor="noteTxtInput"></label> */}
-                    <input  ref={inputRef} type="text" name="noteTxtInput" id="noteTxtInput" />
+                    <input  ref={inputRef}  type="text" name="title" id="title" />
                     <button >Add</button>
                 </form>
 
