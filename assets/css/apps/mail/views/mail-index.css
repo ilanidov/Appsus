@@ -35,4 +35,13 @@
     background-color: rgb(180, 180, 222);
  }
 
+ .email-container{
+    display: grid;
+    grid-template-columns:  30px 70px 1fr 100px 100px ;
+    border-bottom: 1px solid black;
+ }
+
+
+
+
 

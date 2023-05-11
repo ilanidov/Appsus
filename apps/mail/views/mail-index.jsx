@@ -1,7 +1,8 @@
 const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
 
-
+import { MailHeader } from "../cmps/mail-header.jsx"
+import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { emailService } from "../services/mail.service.js"
 import { showSuccessMsg } from "../../../services/event-bus.service.js"
@@ -9,6 +10,7 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export function MailIndex() {
 
+    const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
     const [emails, setEmails] = useState([])
 
     useEffect(() => {
@@ -26,49 +28,26 @@ export function MailIndex() {
         console.log(emails)
     }
 
+    function onDeleteEmail(emailId) {
+        emailService.remove(emailId)
+            .then(()=>{
+                const updatedEmails= emails.filter(email=> email.id !== emailId)
+                setEmails(updatedEmails)
+            })
+    }
+
     if (!emails || !emails.length) return <div> Loading ...</div>
 
     return (
 
         <div className='mail-layout'>
-
-            <nav className="mail-nav-bar flex">
-                <button className="nav-expand-btn">||</button>
-                <img className='logo-img' src='' alt="" />
-                <small className=''>EMAIL</small>
-                <div className="filter-methods">
-                    <input type="search" />
-
-                </div>
-            </nav>
+            <MailHeader />
 
             <div className="main-content flex">
-
-                <section className="nav-options flex">
-                    <a href="">Compose</a>
-                    <br />
-                    <a href="">Inbox</a>
-                    <br />
-                    <a href="">Starred</a>
-                    <br />
-                    <a href="">Sent</a>
-                    <br />
-                    <a href="">Trash</a>
-                    <br />
-                    {/* <Link>Compose</Link>
-                    <Link>Inbox</Link>
-                    <Link>Starred</Link>
-                    <Link>Sent</Link>
-                    <Link>Trash</Link> */}
-                </section>
-
-                {/* <div className="mails-container"> */}
-                <MailList emails={emails} />
-                {/* </div> */}
-                {/* <div className="mails-container">
-                    <DataTable emails={emails} />
-                </div> */}
+                <MailFilter />
+                <MailList onDeleteEmail={onDeleteEmail} emails={emails} />
             </div>
+
         </div>
     )
 }

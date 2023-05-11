@@ -8,11 +8,16 @@ const EMAIL_KEY = 'emailDB'
 export const emailService = {
     getEmptyEmail,
     _createEmails,
-    query
+    query,
+    getDefaultFilter,
+    remove
 }
 
 _createEmails()
 
+function getDefaultFilter() {
+    return { txt: '', maxPrice: '' }
+}
 
 function query(filterBy = {}) {
     // console.log('filterBy service:', filterBy)
@@ -28,6 +33,10 @@ function query(filterBy = {}) {
             // }
             return emails
         })
+}
+
+function remove(emailId) {
+    return storageService.remove(EMAIL_KEY, emailId)
 }
 
 
@@ -53,8 +62,9 @@ function getEmptyEmail() {
         isRead: false,
         sentAt: null,
         removedAt: null,
-        from: 'ilan@gmail.com',
-        to: 'shira@gmail.com'
+        from: 'Ilan',
+        to: 'shira@gmail.com',
+        isSent:false
     }
 }
 
