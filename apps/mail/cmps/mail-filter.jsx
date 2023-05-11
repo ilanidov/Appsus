@@ -1,14 +1,10 @@
 
 
 export function MailFilter() {
-
-
-
-
-
-
+ const filterOptions = [{name: "Compose", value: "compose"}]
 
     return (
+      
 
         <section className="nav-options flex">
             <a href="">Compose</a>

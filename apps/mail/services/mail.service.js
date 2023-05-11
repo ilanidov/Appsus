@@ -11,7 +11,8 @@ export const emailService = {
     query,
     getDefaultFilter,
     remove,
-    get
+    get,
+    save
 }
 
 _createEmails()
@@ -43,6 +44,14 @@ function get(emailId) {
 
 function remove(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
+}
+
+function save(mail) {
+    if (mail.id) {
+        return storageService.put(EMAIL_KEY, mail)
+    } else {
+        return storageService.post(EMAIL_KEY, mail)
+    }
 }
 
 

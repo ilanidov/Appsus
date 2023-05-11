@@ -1,18 +1,30 @@
 const { Link } = ReactRouterDOM
 const { useEffect, useState } = React
 
+import { emailService } from "../services/mail.service.js"
+
 
 
 export function MailList({ emails, onDeleteEmail, onOpenMail }) {
     const [isRead, setIsRead] = useState(false)
-    // const [isShownx, setIsShownx] = useState(false)
+    const [currMail, setCurrMail] = useState({})
+
 
     function handleOpenMail(email) {
-        setIsRead(true)
+        email.isRead = true
+
         onOpenMail(email)
+        // setCurrMail(email)
+ 
     }
 
-    const dynReadClass = isRead ? '' : "is-read"
+
+    function setMailProperty(mailId) {
+
+    }
+
+
+    // const dynReadClass = isRead ? '' : "is-read"
 
 
 
@@ -20,6 +32,7 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
     return (
         <div className="mails-container">
             {emails.map(email => {
+                const dynReadClass = email.isRead ? '' : "is-read"
                 return (
                     <div>
                         <div onClick={() => handleOpenMail(email)} key={email.id} className={`email-container flex ${dynReadClass}`}>

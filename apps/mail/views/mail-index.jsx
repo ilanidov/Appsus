@@ -12,21 +12,22 @@ export function MailIndex() {
     // const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
     const [emails, setEmails] = useState([])
     const [email, setEmail] = useState({})
+    const [filterOption, setFilterOption] = useState("")
     const [isShown, setIsShown] = useState(false)
 
-    useEffect(() => {
-        loadEmails()
-        showSuccessMsg('helooooo')
-        // setSearchParams(filterBy)
-        // }, [filterBy])
-    }, [])
+    // useEffect(() => {
+    //     loadEmails()
+    //     showSuccessMsg('helooooo')
+    //     // setSearchParams(filterBy)
+    //     // }, [filterBy])
+    // }, [])
 
     useEffect(() => {
         loadEmails()
         showSuccessMsg('')
         // setSearchParams(filterBy)
         // }, [filterBy])
-    }, [email])
+    }, [email, filterOption])
 
     function loadEmails() {
         emailService.query().then(setEmails)
@@ -43,10 +44,25 @@ export function MailIndex() {
             })
     }
 
-    function onOpenMail(email) {
-        email.isRead = true
+    function onOpenMail(currMail) {
+        console.log(currMail)
+        // email.isRead = true
+
         setIsShown(prevState => !prevState)
-        setEmail(email)
+        
+        emailService.save(currMail)
+        .then(() => {
+            setEmail(currMail)
+            // navigate('/car')
+        })
+        .catch(err => {
+            console.log('Had issued in mail edit:', err);
+            showErrorMsg('Can not save mail!')
+        })  
+    }
+
+    function filterBy(value){
+        setFilterOption(value)
     }
 
 
