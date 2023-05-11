@@ -36,3 +36,22 @@ height: 5em;
     flex-direction: column;
     gap: 2px;
 }
+
+
+.items-container {
+    background-color: none;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.item {
+    background-color: pink;
+    padding: 5px;
+    min-height: 40px;
+    min-width: 40px;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+}

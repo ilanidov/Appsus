@@ -51,9 +51,9 @@ export function AddNote({ loadNotes }) {
 
 
     return (
-        <section className="note-options ">
+        <section className="note-options">
 
-            <select onChange={(ev) => { setCmpType(ev.target.value) }}>
+            <select class="options" onChange={(ev) => { setCmpType(ev.target.value) }}>
                 <option value="txt">txt</option>
                 <option value="image">image</option>
                 <option value="video">video</option>

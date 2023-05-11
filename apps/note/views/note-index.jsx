@@ -32,7 +32,6 @@ export function NoteIndex(){
 
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
-        // carService.query().then(setCars)
     }
 
     function onRemoveNote(noteId) {
@@ -44,23 +43,6 @@ export function NoteIndex(){
 
     }
 
-
-    // function onSetNewNote(noteToEdit) {
-    //         noteService.save(noteToEdit)
-    //             .then(() => {
-    //                 setNewNote(noteToEdit)
-    //                 showSuccessMsg('saved')
-    //                 navigate('/note')
-    //                 // onSetNewNote(noteToEdit)
-    //             })
-    //             .catch(err => {
-    //                 console.log('Had issued in note edit:', err);
-    //                 showErrorMsg('Can not save note!')
-    //             })
-    //     console.log(newNote)
-    // }
-
-    // console.log('render');
     return (
         <section className="note-index ">
             {/* <NotesFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}

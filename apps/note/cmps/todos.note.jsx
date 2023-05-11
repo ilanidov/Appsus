@@ -6,39 +6,38 @@ import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.servic
 import { noteService } from "../services/note.service.js"
 
 
-export function AddTodoNote({ onSetNewNote}) {
+export function AddTodoNote({ onSetNewNote }) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('todo'))
     const inputRef = useRef()
 
-    console.log(noteToAdd)
- 
+
 
     function handleChange(ev) {
         ev.preventDefault()
-        console.log(ev)
-        console.log(ev.target[0].value)
-
-        setNoteToAdd(prevNote => {({ ...prevNote, info: { ...prevNote.info, title: ev.target[0].value } }) })
-
+        const titleValue= ev.target[0].value
+        setNoteToAdd(prevNote => ({...prevNote, info: { ...prevNote.info, title: titleValue } } ))
+        // console.log(noteToAdd)
 
 
-        const { info } = noteToAdd
-        console.log(info)
-        const todoList = { txt: ev.target[1].value, doneAt: 'time' }
-        info.todos.push(todoList)
-        console.log(info.todos)
-        setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, todos: info.todos } }))
+        
+        const updatedInfo = noteToAdd.info
+        const todoValue = { txt: ev.target[1].value, doneAt: 'time' }
+        
+       updatedInfo.todos.push(todoValue)
+        // console.log(updatedInfo.todos)
+        setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, todos: updatedInfo.todos } }))
         onSaveNote()
     }
 
 
 
     function onSaveNote() {
-        console.log(noteToAdd)
+        // console.log(noteToAdd)
         onSetNewNote(noteToAdd)
     }
 
 
+    // console.log(noteToAdd)
 
     return (
         <section className="todo-note-add-container">
@@ -51,7 +50,7 @@ export function AddTodoNote({ onSetNewNote}) {
                 <input className="" ref={inputRef} type="text" name="todo1" id="todo1" placeholder="todo1" />
 
                 <label className="" htmlFor="todo2"></label>
-                <input className="" ref={inputRef}  type="text" name="todo2" id="todo2" placeholder="todo2" />
+                <input className="" ref={inputRef} type="text" name="todo2" id="todo2" placeholder="todo2" />
 
                 {/* <label className="" htmlFor="todo3"></label> */}
                 {/* <input className="" ref={inputRef} onChange={handleChange} type="text" name="todo3" id="todo3" placeholder="todo3" /> */}
