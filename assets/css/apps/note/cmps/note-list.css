@@ -1,1 +1,17 @@
  /* note list */
+
+ .notes-list{
+   width: 90vw;
+   height: 100vh;
+    display: flex;
+    flex-wrap:wrap;
+    list-style-type: none;
+ }
+
+ .notes-list >* {
+    width: 15em;
+    height: 15em;
+    background-color: antiquewhite;
+    margin: 10px;
+ }
+

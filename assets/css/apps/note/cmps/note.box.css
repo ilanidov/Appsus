@@ -1,4 +1,4 @@
-.note-box-container{
+.note-txt-box-container{
 background-color: antiquewhite;
 width: 100%;
 display: flex;
@@ -8,16 +8,16 @@ height: 5em;
 
 }
 
-.note-box{
+.note-txt-box{
     width: 37.5em;
     display: flex;
 
 }
 
-.note-box-input{
+.note-txt-box-input{
     width: 100%;
 }
-.note-box-input input{
+.note-txt-box-input input{
     width: 100%;
     /* height: 100%; */
 }

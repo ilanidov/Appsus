@@ -33,19 +33,37 @@ function addNewNote(userNote) {
 }
 
 
-function getEmptyNote() {
-    return {
-        // id: 'n101',
-        createdAt:2023,
-        type: 'NoteTxt',
-        isPinned: true,
-        style: {
-            backgroundColor: '#00d'
-        },
-        info: {
-            title: ''
-        }
+function getEmptyNote(type) {
+
+    switch (type ) {
+        case 'txt':
+        return {
+            createdAt:2023,
+            type: 'NoteTxt',
+            isPinned: true,
+            style: {
+                backgroundColor: '#00d'
+            },
+            info: {
+                title: ''
+            }
     }
+
+    case 'image':
+        return {
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: '',
+                    title: ''
+                },
+                style: {
+                    backgroundColor: '#00d'
+                }
+        }
+
+    }
+
 }
 
 

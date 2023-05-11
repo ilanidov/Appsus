@@ -1,69 +1,106 @@
-const { useEffect, useState, useRef } = React
+
+
+const { useEffect, useState } = React
+const { Link, useSearchParams } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouterDOM
 
 
 
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
-
+import { NotesList } from "../cmps/notes.list.jsx"
+import { storageService } from "../../../services/async-storage.service.js"
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
+import { AddTxtNote } from "../cmps/txt-note.jsx"
+import { AddImageNote } from "../cmps/image.note.jsx"
 
 
-export function AddNote({onSetNewNote}) {
+export function AddNote({ loadNotes }) {
 
-    const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
-    const inputRef = useRef()
+
+    // const [searchParams, setSearchParams] = useSearchParams()
+    // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
+    const [notes, setNotes] = useState([])
+    const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
-    const params = useParams()
+    const [cmpType, setCmpType] = useState('txt')
 
-    // useEffect(() => {
-    //     onSetNewNote(noteToEdit)
-    // }, [noteToEdit])
+    useEffect(() => {
+        loadNotes()
+    }, [newNote])
 
 
+    // function onSetFooterStyle(newStyle) {
+    //     setFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
+    // }
 
-    function handleChange({ target }) {
-        // const inputVal = target.value
-        const fa = { title: target.value }
-        // const field = target.name
-        // const value = target.type === 'number' ? (+target.value || '') : target.value
-        // setNoteToEdit(prevNote => ({ ...prevNote, [field]: value }))
-        // setNoteToEdit(prevBook => ({ ...prevBook, info:{...prevBook.info , title:target.value} }))
-        setNoteToEdit(prevBook => ({ ...prevBook, info: fa }))
-        // console.log(noteToEdit)
+    function onSetNewNote(noteToEdit) {
+        noteService.save(noteToEdit)
+            .then(() => {
+                setNewNote(noteToEdit)
+                showSuccessMsg('saved')
+                navigate('/note')
+                // onSetNewNote(noteToEdit)
+            })
+            .catch(err => {
+                console.log('Had issued in note edit:', err);
+                showErrorMsg('Can not save note!')
+            })
+        console.log(newNote)
     }
 
-    function onSaveNote(ev) {
-        console.log(noteToEdit)
-        ev.preventDefault()
-        onSetNewNote(noteToEdit)
 
 
-    //     noteService.save(noteToEdit)
-    //         .then(() => {
-    //             showSuccessMsg('saved')
-    //             navigate('/note')
-    //             onSetNewNote(noteToEdit)
-    //         })
-    //         .catch(err => {
-    //             console.log('Had issued in note edit:', err);
-    //             showErrorMsg('Can not save note!')
-    //         })
-    }
+    // function onSetCmpType(ev) {
+    //     console.log(ev)
+    //     // ((ev) => setCmpType(ev.target.value))
+    // }
 
-    // const { type, title } = noteToEdit
+
+    console.log(cmpType)
+
+    // console.log('render');
     return (
-        <section className="note-add">
+        <section className="note-options ">
 
-            <form onSubmit={onSaveNote} >
-                <label htmlFor="title">Title:</label>
-                <input ref={inputRef} onChange={handleChange} type="text" name="title" id="title" />
+            <select onChange={(ev) => { setCmpType(ev.target.value) }}>
+                <option value="txt">txt</option>
+                <option value="image">image</option>
+                <option value="video">video</option>
+                <option value="todos">todos</option>
+            </select>
+         
 
 
-                <button>add</button>
-                {/* <button>{noteToEdit.id ? 'Save' : 'Add'}</button> */}
-            </form>
+            <DynamicCmp cmpType={cmpType}  onSetNewNote={onSetNewNote} />
 
+
+            {/* <AddTxtNote onSetNewNote={onSetNewNote} /> */}
+        
         </section>
     )
-
 }
+
+
+
+
+function DynamicCmp(props) {
+    switch (props.cmpType) {
+        case 'txt':
+            return <AddTxtNote {...props} />
+        case 'image':
+            return <AddImageNote {...props} />
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

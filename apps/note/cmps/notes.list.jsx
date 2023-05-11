@@ -9,7 +9,10 @@ export function NotesList({ notes, onRemoveNote }) {
         <ul className="notes-list">
             {notes.map(note =>
                 <li key={note.id}>
-                    {note.info.title}
+                    {console.log(note)}
+                    {(note.type === 'NoteTxt') && note.info.title}
+                    {(note.type === 'NoteImg') && <img src={note.info.url} alt=" cover" /> }
+
                     <section>
                         <button onClick={() => onRemoveNote(note.id)} >Remove</button>
                         <button><Link to={`/note/edit/${note.id}`} >Edit</Link></button>

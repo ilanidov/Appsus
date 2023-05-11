@@ -7,7 +7,6 @@ const { useParams, useNavigate } = ReactRouterDOM
 import { NotesList } from "../cmps/notes.list.jsx"
 import { storageService } from "../../../services/async-storage.service.js"
 import { showSuccessMsg , showErrorMsg} from "../../../services/event-bus.service.js"
-import { NoteTxt } from "../cmps/note.txt.jsx"
 import { noteService } from "../services/note.service.js"
 import { AddNote } from "./add.note.jsx"
 
@@ -17,7 +16,7 @@ export function NoteIndex(){
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
     const [notes, setNotes] = useState([])
-    const [newNote , setNewNote ] = useState(noteService.getEmptyNote())
+    // const [newNote , setNewNote ] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
 
     useEffect( ()=> {
@@ -27,9 +26,9 @@ export function NoteIndex(){
 
     }, [] )
 
-    useEffect(() => {
-        loadNotes()
-    }, [newNote])
+    // useEffect(() => {
+    //     loadNotes()
+    // }, [newNote])
 
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
@@ -46,38 +45,29 @@ export function NoteIndex(){
     }
 
 
-
-
-
-    function onSetNewNote(noteToEdit) {
-            noteService.save(noteToEdit)
-                .then(() => {
-                    setNewNote(noteToEdit)
-                    showSuccessMsg('saved')
-                    navigate('/note')
-                    // onSetNewNote(noteToEdit)
-                })
-                .catch(err => {
-                    console.log('Had issued in note edit:', err);
-                    showErrorMsg('Can not save note!')
-                })
-        console.log(newNote)
-    }
+    // function onSetNewNote(noteToEdit) {
+    //         noteService.save(noteToEdit)
+    //             .then(() => {
+    //                 setNewNote(noteToEdit)
+    //                 showSuccessMsg('saved')
+    //                 navigate('/note')
+    //                 // onSetNewNote(noteToEdit)
+    //             })
+    //             .catch(err => {
+    //                 console.log('Had issued in note edit:', err);
+    //                 showErrorMsg('Can not save note!')
+    //             })
+    //     console.log(newNote)
+    // }
 
     // console.log('render');
     return (
         <section className="note-index ">
             {/* <NotesFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
-            <Link to="/note/edit">Add a note</Link>
+            <AddNote loadNotes={loadNotes} />
             <NotesList notes={notes} onRemoveNote={onRemoveNote} />
-            <AddNote  onSetNewNote={onSetNewNote} loadNotes={loadNotes} />
         </section>
     )
-
-
-
-
-
 }
 
 
