@@ -12,6 +12,7 @@ export function NotesList({ notes, onRemoveNote }) {
                     {console.log(note)}
                     {(note.type === 'NoteTxt') && note.info.title}
                     {(note.type === 'NoteImg') && <img src={note.info.url} alt=" cover" /> }
+                    {(note.type === 'NoteImg')}
 
                     <section>
                         <button onClick={() => onRemoveNote(note.id)} >Remove</button>

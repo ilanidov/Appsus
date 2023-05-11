@@ -4,6 +4,8 @@
 import { storageService } from '../../../services/async-storage.service.js'
 import { localStorageService } from '../../../services/storage.service.js'
 
+// import {} from '../../../assets/img/mazda.jpg'
+
 const NOTES_KEY = 'noteDB'
 _createNotes()
 
@@ -142,12 +144,12 @@ function _createDemoNote() {
                 title: 'Fullstack Me Baby!'
             }
         },
-        {
+        {   
             id: 'n102',
             type: 'NoteImg',
             isPinned: false,
             info: {
-                url: 'http://some-img/me',
+                url: '../../../assets/img/mazda.jpg',
                 title: 'Bobi and Me'
             },
             style: {
