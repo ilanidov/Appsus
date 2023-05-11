@@ -10,7 +10,8 @@ export const emailService = {
     _createEmails,
     query,
     getDefaultFilter,
-    remove
+    remove,
+    get
 }
 
 _createEmails()
@@ -33,6 +34,11 @@ function query(filterBy = {}) {
             // }
             return emails
         })
+}
+
+function get(emailId) {
+    return storageService.get(EMAIL_KEY, emailId)
+    // return axios.get(CAR_KEY, carId)
 }
 
 function remove(emailId) {
@@ -59,12 +65,15 @@ function getEmptyEmail() {
         id: '',
         subject: '',
         body: '',
-        isRead: false,
         sentAt: null,
         removedAt: null,
         from: 'Ilan',
+        sendersEmail: 'momo@momo.com',
         to: 'shira@gmail.com',
-        isSent:false
+        isRead: false,
+        isSent:false,
+        isStarred:false,
+        isDeleted:false
     }
 }
 
@@ -86,7 +95,7 @@ function _createEmails() {
 function _createEmail() {
     const email = getEmptyEmail()
     email.id = utilService.makeId()
-    email.subject = utilService.makeLorem(5)
+    email.subject = utilService.makeLorem(2)
     email.body = utilService.makeLorem(15)
     email.sentAt = Date.now()
 

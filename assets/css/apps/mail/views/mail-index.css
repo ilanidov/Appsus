@@ -37,8 +37,9 @@
 
  .email-container{
     display: grid;
-    grid-template-columns:  30px 70px 1fr 100px 100px ;
+    grid-template-columns: 50px 50px 150px 1fr 150px 70px;
     border-bottom: 1px solid black;
+    align-items: center;
  }
 
 

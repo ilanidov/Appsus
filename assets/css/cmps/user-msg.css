@@ -17,5 +17,6 @@
 
 .user-msg button{
     float: right;
+    bottom: 0;
     margin: 1em;
 }
