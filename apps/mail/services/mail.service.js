@@ -1,7 +1,7 @@
 // mail service
 import { utilService } from "../../../services/util.service.js"
 import { storageService } from "../../../services/async-storage.service.js"
-import { localStorageService } from "../../../services/storage.service.js" 
+import { localStorageService } from "../../../services/storage.service.js"
 
 const EMAIL_KEY = 'emailDB'
 
@@ -71,28 +71,33 @@ function getEmptyEmail() {
         sendersEmail: 'momo@momo.com',
         to: 'shira@gmail.com',
         isRead: false,
-        isSent:false,
-        isStarred:false,
-        isDeleted:false
+        isSent: false,
+        isStarred: false,
+        isDeleted: false
     }
 }
 
 function _createEmails() {
-    const emails = [
-        _createEmail(),
-        _createEmail(),
-        _createEmail(),
-        _createEmail(),
-        _createEmail(),
-        _createEmail(),
-        _createEmail(),
-    ]
-    
-    localStorageService.saveToStorage(EMAIL_KEY, emails)
+    let emails = localStorageService.loadFromStorage(EMAIL_KEY)
+    if (!emails || !emails.length) {
+
+        emails = [
+            _createEmail(),
+            _createEmail(),
+            _createEmail(),
+            _createEmail(),
+            _createEmail(),
+            _createEmail(),
+            _createEmail(),
+        ]
+        localStorageService.saveToStorage(EMAIL_KEY, emails)
+    }
+
     return emails
 }
 
 function _createEmail() {
+
     const email = getEmptyEmail()
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(2)

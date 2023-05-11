@@ -9,11 +9,10 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { EmailDetails } from "../cmps/mail-details.jsx"
 
 export function MailIndex() {
-    const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
+    // const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
     const [emails, setEmails] = useState([])
     const [email, setEmail] = useState({})
     const [isShown, setIsShown] = useState(false)
-    console.log(isShown)
 
     useEffect(() => {
         loadEmails()
@@ -45,13 +44,15 @@ export function MailIndex() {
     }
 
     function onOpenMail(email) {
-        console.log(email)
-        // console.log(state)
+        email.isRead = true
         setIsShown(prevState => !prevState)
         setEmail(email)
     }
 
-    function onCloseMail(){
+
+
+
+    function onCloseMail() {
         setIsShown(prevState => !prevState)
     }
 

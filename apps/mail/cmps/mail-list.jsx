@@ -4,14 +4,15 @@ const { useEffect, useState } = React
 
 
 export function MailList({ emails, onDeleteEmail, onOpenMail }) {
-
+    const [isRead, setIsRead] = useState(false)
     // const [isShownx, setIsShownx] = useState(false)
 
     function handleOpenMail(email) {
-        console.log('handle')
-        // setIsShownx(prevState => !prevState)
+        setIsRead(true)
         onOpenMail(email)
     }
+
+    const dynReadClass = isRead ? '' : "is-read"
 
 
 
@@ -21,7 +22,7 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
             {emails.map(email => {
                 return (
                     <div>
-                        <div onClick={() => handleOpenMail(email)} key={email.id} className="email-container flex">
+                        <div onClick={() => handleOpenMail(email)} key={email.id} className={`email-container flex ${dynReadClass}`}>
                             <section className="markings">
                                 <span className="star">⭐</span>
                                 <span className="star">☑</span>
