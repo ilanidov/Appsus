@@ -1,0 +1,64 @@
+.create-note {
+    background-color: antiquewhite;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12em;
+
+}
+
+.todo-input {
+    height: 2em;
+    background-color: rgba(217, 214, 214, 0.431);
+    border: none;
+}
+
+.add-btn-todo{
+    width: 30%;
+    align-self: center;
+}
+
+.choose-note-type {
+    margin: 10px;
+}
+
+
+.note-txt-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.note-txt-box {
+    width: 37.5em;
+    display: flex;
+
+}
+
+.todo-note-add {
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    gap: 5px;
+    background-color:antiquewhite;
+}
+
+
+.items-container {
+    background-color: none;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.item {
+    background-color: pink;
+    padding: 5px;
+    min-height: 40px;
+    min-width: 40px;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+}

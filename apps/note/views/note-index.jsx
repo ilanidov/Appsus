@@ -6,11 +6,12 @@ const { useParams, useNavigate } = ReactRouterDOM
 
 import { NotesList } from "../cmps/notes.list.jsx"
 import { storageService } from "../../../services/async-storage.service.js"
-import { showSuccessMsg , showErrorMsg} from "../../../services/event-bus.service.js"
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { AddNote } from "./add.note.jsx"
+import { NotesFilter } from "../cmps/note.filter.jsx"
 
-export function NoteIndex(){
+export function NoteIndex() {
 
 
     const [searchParams, setSearchParams] = useSearchParams()
@@ -19,16 +20,19 @@ export function NoteIndex(){
     // const [newNote , setNewNote ] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
 
-    useEffect( ()=> {
-        loadNotes()
-        showSuccessMsg('Welcome to notes!')
-        setSearchParams(filterBy)
-
-    }, [] )
 
     // useEffect(() => {
-    //     loadNotes()
-    // }, [newNote])
+    //     console.log('hi')
+    //     showSuccessMsg('Welcome to notes!')
+    // }, [])
+
+
+    useEffect(() => {
+        loadNotes()
+        setSearchParams(filterBy)
+
+    }, [filterBy])
+
 
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
@@ -38,14 +42,18 @@ export function NoteIndex(){
         noteService.remove(noteId).then(() => {
             const updatedNotes = notes.filter(note => note.id !== noteId)
             setNotes(updatedNotes)
-            showSuccessMsg(`Note (${noteId}) removed!`)
+            showSuccessMsg(`Note removed!`)
         })
 
     }
 
+    function onSetFilter(filterBy) {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
+    }
+
     return (
-        <section className="note-index ">
-            {/* <NotesFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
+        <section className="note-index">
+            <NotesFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             <AddNote loadNotes={loadNotes} />
             <NotesList notes={notes} onRemoveNote={onRemoveNote} />
         </section>

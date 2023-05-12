@@ -24,7 +24,7 @@ function addNewNote(userNote) {
     console.log(userNote)
     const note = {
         createdAt: 2023,
-        type: 'NoteTxt',
+        type: 'noteTxt',
         isPinned: true,
         style: { backgroundColor: '#00d' },
         info: { title: userNote }
@@ -41,19 +41,20 @@ function getEmptyNote(type) {
         case 'txt':
             return {
                 createdAt: 2023,
-                type: 'NoteTxt',
+                type: 'noteTxt',
                 isPinned: true,
                 style: {
                     backgroundColor: '#FFD59E'
                 },
                 info: {
-                    title: ''
+                    title: '',
+                    content: ''
                 }
             }
 
         case 'image':
             return {
-                type: 'NoteImg',
+                type: 'noteImg',
                 isPinned: false,
                 info: {
                     url: '',
@@ -66,7 +67,7 @@ function getEmptyNote(type) {
 
             case 'todo':
                 return {
-                    type: 'NoteTodos',
+                    type: 'noteTodos',
                     isPinned: false,
                     style: {
                         backgroundColor: '#FFA1A1'
@@ -74,36 +75,27 @@ function getEmptyNote(type) {
                     info: {
                         title: '',
                         todos: []
-                    }
-
-
-
-
-                }
-
-
-
-
-
-
-
+                    }}
     }
 }
 
 
-
+// add return for 'all' option
 function query(filterBy = {}) {
-    // console.log('filterBy service:', filterBy)
     return storageService.query(NOTES_KEY)
         .then(notes => {
+            // console.log(filterBy)
+            
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
-                notes = notes.filter(car => regExp.test(book.info.title))
+                notes = notes.filter(note => regExp.test(note.info.title))
+            }
+            
+            if (filterBy.type === 'all') return notes
+            if (filterBy.type) {
+                notes = notes.filter(note => note.type === filterBy.type)
             }
 
-            // if (filterBy.type) {
-            //     notes = notes.filter(car => car.maxSpeed >= filterBy.minSpeed)
-            // }
             return notes
         })
 }
@@ -157,18 +149,19 @@ function _createDemoNote() {
         {
             id: 'n101',
             createdAt: 1112222,
-            type: 'NoteTxt',
+            type: 'noteTxt',
             isPinned: true,
             style: {
                 backgroundColor: ''
             },
             info: {
-                title: 'Fullstack Me Baby!'
+                title: 'Fullstack Me Baby!',
+                content: 'Hello'
             }
         },
         {
             id: 'n102',
-            type: 'NoteImg',
+            type: 'noteImg',
             isPinned: false,
             info: {
                 url: '../../../assets/img/mazda.jpg',
@@ -180,7 +173,7 @@ function _createDemoNote() {
         },
         {
             id: 'n103',
-            type: 'NoteTodos',
+            type: 'noteTodos',
             isPinned: false,
             style: {
                 backgroundColor: ''
@@ -188,14 +181,14 @@ function _createDemoNote() {
             info: {
                 title: 'Get my stuff together',
                 todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
+                    { txt: 'Driving license', doneAt: new Date().getTime() },
+                    { txt: 'Coding power', doneAt: new Date().getTime() }
                 ]
             }
         },
         {
             id: 'n104',
-            type: 'NoteTodos',
+            type: 'noteTodos',
             isPinned: false,
             style: {
                 backgroundColor: '#FFA1A1'
@@ -203,14 +196,14 @@ function _createDemoNote() {
             info: {
                 title: 'Pets',
                 todos: [
-                    { txt: 'Clean their beds', doneAt: null },
-                    { txt: 'Long walk', doneAt: null }
+                    { txt: 'Clean their beds', doneAt: new Date().getTime() },
+                    { txt: 'Long walk', doneAt: new Date().getTime() }
                 ]
             }
         },
         {
             id: 'n105',
-            type: 'NoteTodos',
+            type: 'noteTodos',
             isPinned: false,
             style: {
                 backgroundColor: '#FFA1A1'
@@ -218,14 +211,14 @@ function _createDemoNote() {
             info: {
                 title: 'Monday',
                 todos: [
-                    { txt: 'Gym', doneAt: null },
-                    { txt: 'Call the bank', doneAt: null }
+                    { txt: 'Gym', doneAt: new Date().getTime() },
+                    { txt: 'Call the bank', doneAt: new Date().getTime() }
                 ]
             }
         },
         {
             id: 'n106',
-            type: 'NoteTodos',
+            type: 'noteTodos',
             isPinned: false,
             style: {
                 backgroundColor: '#FFA1A1'
@@ -233,8 +226,8 @@ function _createDemoNote() {
             info: {
                 title: 'Sunday',
                 todos: [
-                    { txt: 'Guitar lesson', doneAt: null },
-                    { txt: 'Shoping', doneAt: null }
+                    { txt: 'Guitar lesson', doneAt: new Date().getTime() },
+                    { txt: 'Shoping', doneAt: new Date().getTime() }
                 ]
             }
         },

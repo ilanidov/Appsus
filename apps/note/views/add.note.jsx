@@ -22,9 +22,7 @@ export function AddNote({ loadNotes }) {
         backgroundColor: 'none',
         fontSize: '16px'
     })
-    // const [searchParams, setSearchParams] = useSearchParams()
-    // const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
-    const [notes, setNotes] = useState([])
+
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
     const [cmpType, setCmpType] = useState('txt')
@@ -34,21 +32,17 @@ export function AddNote({ loadNotes }) {
     }, [newNote])
 
 
-    // function onSetFooterStyle(newStyle) {
-    //     setFooterStyle((prevStyle) => ({ ...prevStyle, ...newStyle }))
-    // }
-
     function onSetNoteStyle(newStyle) {
         setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
-        setNewNote(prevNote => ({ ...prevNote, style: noteStyle} ))
+        setNewNote(prevNote => ({ ...prevNote, style: noteStyle }))
         // console.log(noteStyle)
     }
-    
+
     function onSetNewNote(noteToEdit) {
         noteToEdit.style = noteStyle
         noteService.save(noteToEdit)
-        .then(() => {
-            setNewNote(noteToEdit)
+            .then(() => {
+                setNewNote(noteToEdit)
                 showSuccessMsg('saved')
                 navigate('/note')
             })
@@ -60,21 +54,19 @@ export function AddNote({ loadNotes }) {
 
 
     return (
-        <section className="note-options">
+        <section className="create-note">
 
-            <select className="options" onChange={(ev) => { setCmpType(ev.target.value) }}>
+            <select className="choose-note-type" onChange={(ev) => { setCmpType(ev.target.value) }}>
                 <option value="txt">txt</option>
                 <option value="image">image</option>
                 <option value="video">video</option>
                 <option value="todos">todos</option>
             </select>
-            <section>
-        <ColorInput onSetNoteStyle={onSetNoteStyle} />
-        </section>
             <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
+            <section>
+                <ColorInput onSetNoteStyle={onSetNoteStyle} />
+            </section>
 
-            {/* <AddTxtNote onSetNewNote={onSetNewNote} /> */}
-        
         </section>
     )
 }
@@ -88,8 +80,8 @@ function DynamicCmp(props) {
             return <AddTxtNote {...props} />
         case 'image':
             return <AddImageNote {...props} />
-        case 'todos' :
-            return < AddTodoNote {...props}  />
+        case 'todos':
+            return < AddTodoNote {...props} />
 
     }
 }
