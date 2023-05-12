@@ -12,30 +12,56 @@ export const emailService = {
     getDefaultFilter,
     remove,
     get,
-    save
+    save,
 }
 
 _createEmails()
 
-function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
-}
-
 function query(filterBy = {}) {
-    // console.log('filterBy service:', filterBy)
-    return storageService.query(EMAIL_KEY)
-        .then(emails => {
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     cars = cars.filter(car => regExp.test(car.vendor))
-            // }
+    return storageService.query(EMAIL_KEY).then(emails => {
 
-            // if (filterBy.minSpeed) {
-            //     cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-            // }
-            return emails
-        })
+        switch (true) {
+
+           
+
+            case filterBy.isRead: {
+                emails = emails.filter((mail) => mail.isRead)
+                break
+            }
+
+            case filterBy.isStared: {
+                emails = emails.filter((mail) => mail.isStared)
+                break
+            }
+
+
+
+            default: {
+                emails = emails.filter((mail) => !mail.removedAt)
+                break
+            }
+
+            case filterBy.txt !== undefined: {
+
+                const filterText = filterBy.txt.toLowerCase()
+
+                const checkedEmails = emails.filter(
+                    (mail) =>
+                        mail.body.toLowerCase().includes(filterText) ||
+                        mail.subject.toLowerCase().includes(filterText) ||
+                        mail.from.toLowerCase().includes(filterText)
+                )
+
+                if (!checkedEmails || !checkedEmails.length) return emails
+                else return checkedEmails
+
+            }
+        }
+
+        return emails
+    })
 }
+
 
 function get(emailId) {
     return storageService.get(EMAIL_KEY, emailId)
@@ -54,21 +80,6 @@ function save(mail) {
     }
 }
 
-
-
-// const email = {
-//     id: 'e101',
-//     subject: 'Miss you!',
-//     body: 'Would love to catch up sometimes',
-//     isRead: false,
-//     sentAt: 1551133930594,
-//     removedAt: null,
-//     from: 'momo@momo.com',
-//     to: 'user@appsus.com'
-// }
-
-
-
 function getEmptyEmail() {
     return {
         id: '',
@@ -76,7 +87,7 @@ function getEmptyEmail() {
         body: '',
         sentAt: null,
         removedAt: null,
-        from: 'Ilan',
+        from: 'google',
         sendersEmail: 'momo@momo.com',
         to: 'shira@gmail.com',
         isRead: false,
@@ -114,4 +125,17 @@ function _createEmail() {
     email.sentAt = Date.now()
 
     return email
+}
+
+function getDefaultFilter(filterBy) {
+    const defaultFilter = {
+        txt: '',
+        sentAt: null,
+        removedAt: null,
+        isRead: false,
+        isSent: false,
+        isStarred: false,
+        isDeleted: false
+    }
+    return { ...defaultFilter, ...filterBy }
 }

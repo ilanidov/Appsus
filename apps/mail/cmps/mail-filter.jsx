@@ -1,27 +1,21 @@
+const { useState, useEffect } = React
 
+import { emailService } from "../services/mail.service.js"
 
-export function MailFilter() {
- const filterOptions = [{name: "Compose", value: "compose"}]
+export function MailFilter({ onSetFilter, filterBy }) {
+    const [filterByEdit, setFilterByEdit] = useState(filterBy)
+
+    useEffect(() => {
+        onSetFilter(filterByEdit)
+    }, [filterByEdit])
 
     return (
-      
-
-        <section className="nav-options flex">
-            <a href="">Compose</a>
-            <br />
-            <a href="">Inbox</a>
-            <br />
-            <a href="">Starred</a>
-            <br />
-            <a href="">Sent</a>
-            <br />
-            <a href="">Trash</a>
-            <br />
-            {/* <Link>Compose</Link>
-    <Link>Inbox</Link>
-    <Link>Starred</Link>
-    <Link>Sent</Link>
-    <Link>Trash</Link> */}
+        
+        <section className="">
+            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}>Inbox</button>
+            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isRead: true })) }}>read</button>
+            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isSent: true })) }}>sent</button>
+            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: true })) }}>deleted</button>
         </section>
     )
 }

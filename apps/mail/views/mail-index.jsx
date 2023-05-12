@@ -1,5 +1,4 @@
 const { useEffect, useState } = React
-const { Link, useSearchParams } = ReactRouterDOM
 
 import { MailHeader } from "../cmps/mail-header.jsx"
 import { MailFilter } from "../cmps/mail-filter.jsx"
@@ -9,32 +8,24 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { EmailDetails } from "../cmps/mail-details.jsx"
 
 export function MailIndex() {
-    // const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
     const [emails, setEmails] = useState([])
     const [email, setEmail] = useState({})
-    const [filterOption, setFilterOption] = useState("")
     const [isShown, setIsShown] = useState(false)
+    const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter());
 
-    // useEffect(() => {
-    //     loadEmails()
-    //     showSuccessMsg('helooooo')
-    //     // setSearchParams(filterBy)
-    //     // }, [filterBy])
-    // }, [])
 
     useEffect(() => {
         loadEmails()
         showSuccessMsg('')
-        // setSearchParams(filterBy)
-        // }, [filterBy])
-    }, [email, filterOption])
+    }, [email, filterBy])
 
     function loadEmails() {
-        emailService.query().then(setEmails)
-        // emailService.query(filterBy).then(cars => setCars(cars))
-        // carService.query().then(setCars)
-        console.log(emails)
+        emailService.query(filterBy).then(setEmails)
     }
+
+    function onSetFilter(filterBy) {
+        setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }))
+      }
 
     function onDeleteEmail(emailId) {
         emailService.remove(emailId)
@@ -45,27 +36,16 @@ export function MailIndex() {
     }
 
     function onOpenMail(currMail) {
-        console.log(currMail)
-        // email.isRead = true
-
         setIsShown(prevState => !prevState)
-        
         emailService.save(currMail)
         .then(() => {
             setEmail(currMail)
-            // navigate('/car')
         })
         .catch(err => {
             console.log('Had issued in mail edit:', err);
             showErrorMsg('Can not save mail!')
         })  
     }
-
-    function filterBy(value){
-        setFilterOption(value)
-    }
-
-
 
 
     function onCloseMail() {
@@ -79,12 +59,11 @@ export function MailIndex() {
     return (
 
         <div className='mail-layout'>
-            <MailHeader />
+            <MailHeader onSetFilter={onSetFilter} filterBy={filterBy} />
 
             <div className="main-content flex">
-                <MailFilter />
+                <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
                 {!isShown && <MailList onOpenMail={onOpenMail} onDeleteEmail={onDeleteEmail} emails={emails} />}
-                {/* {!isShown && <MailList isShown={isShown} setIsShown={setIsShown} onDeleteEmail={onDeleteEmail} emails={emails} />} */}
                 {isShown && <EmailDetails onCloseMail={onCloseMail} email={email} />}
             </div>
 

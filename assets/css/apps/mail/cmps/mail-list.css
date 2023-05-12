@@ -4,3 +4,26 @@
     background-color:rgb(240, 237, 237);
 }
 
+ .email-container {
+     display: grid;
+     /* overflow: hidden; */
+
+     grid-template-columns: 50px 1fr 70px;
+     border-bottom: 1px solid black;
+     align-items: center;
+     height: 2.5em;
+   
+ }
+
+ .email-content{
+    display: grid;
+    grid-template-columns: 50px 190px 1fr 150px;
+    /* overflow: hidden; */
+    overflow-wrap: normal;
+    align-items: center;
+    cursor: pointer;
+ }
+
+ .email-content span{
+    margin-left: 10px;
+ }
