@@ -31,7 +31,7 @@ export function AddNote({ loadNotes }) {
         loadNotes()
     }, [newNote])
 
-
+  
     function onSetNoteStyle(newStyle) {
         setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
         setNewNote(prevNote => ({ ...prevNote, style: noteStyle }))
@@ -62,10 +62,15 @@ export function AddNote({ loadNotes }) {
                 <option value="video">video</option>
                 <option value="todos">todos</option>
             </select>
-            <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
-            <section>
+
+            <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote}/>
+                
+                <section className="note-buttons">
                 <ColorInput onSetNoteStyle={onSetNoteStyle} />
-            </section>
+
+
+
+                </section>
 
         </section>
     )

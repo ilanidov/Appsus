@@ -16,7 +16,7 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
-    getNextCarId,
+    // getNextCarId,
     addNewNote
 }
 
@@ -117,14 +117,14 @@ function save(note) {
     }
 }
 
-function getNextCarId(carId) {
-    return storageService.query(NOTES_KEY)
-        .then((cars) => {
-            let carIdx = cars.findIndex(car => car.id === carId)
-            if (carIdx === cars.length - 1) carIdx = -1
-            return cars[carIdx + 1].id
-        })
-}
+// function getNextCarId(carId) {
+//     return storageService.query(NOTES_KEY)
+//         .then((cars) => {
+//             let carIdx = cars.findIndex(car => car.id === carId)
+//             if (carIdx === cars.length - 1) carIdx = -1
+//             return cars[carIdx + 1].id
+//         })
+// }
 
 
 

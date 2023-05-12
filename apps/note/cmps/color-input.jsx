@@ -1,6 +1,6 @@
 
 export function ColorInput({onSetNoteStyle }) {
-    const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1']
+    const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1' , 'antiquewhite']
 
     function onChooseColor(color) {
         console.log(color)

@@ -5,59 +5,97 @@ const { useParams, useNavigate } = ReactRouterDOM
 import { noteService } from "../services/note.service.js"
 
 
-export function AddTodoNote({ onSetNewNote ,noteStyle}) {
+export function AddTodoNote({ onSetNewNote, noteStyle }) {
+
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('todo'))
-    const inputRef = useRef()
+    const [todo, setTodo] = useState()
+    const [isTodosShown, setIsTodosShown] = useState(false)
 
 
 
-    function handleChange(ev) {
+    const inputRefTitle = useRef()
+    const inputRefContent = useRef()
+    console.log(noteToAdd)
+
+
+
+    function handleChange({ target }) {
+        setNoteToAdd(prevNote => ({ ...prevNote, style: noteStyle }))
+
+        const field = target.name
+        const value = target.value
+        // console.log(value)
+        // console.log(field)
+        if (field === 'title')
+            setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, [field]: value } }))
+
+        if (field === 'todo-content') {
+            let currValue = ''
+            currValue += value
+            console.log(currValue)
+            setTodo({ txt: currValue, doneAt: new Date().getTime() })
+            console.log(todo)
+        }
+    }
+
+    function onAddTodo() {
+        if (!todo.txt || todo.txt==='') return
+        setIsTodosShown(true)
+        setNoteToAdd(prevNote => ({...prevNote, info:
+                { ...prevNote.info, todos: [...prevNote.info.todos, todo] }
+        }))
+        inputRefContent.current.value = ''
+    }
+
+
+    function onSaveNote(ev) {
         ev.preventDefault()
-        const titleValue= ev.target[0].value
-        setNoteToAdd(prevNote => ({ ...prevNote, style: noteStyle} ))
-
-        setNoteToAdd(prevNote => ({...prevNote, info: { ...prevNote.info, title: titleValue } } ))
-        // console.log(noteToAdd)
-
-        const updatedInfo = noteToAdd.info
-        const todoValue = { txt: ev.target[1].value, doneAt: new Date().getTime() }
-        
-       updatedInfo.todos.push(todoValue)
-        // console.log(updatedInfo.todos)
-        setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, todos: updatedInfo.todos } }))
-        onSaveNote()
-    }
-
-  
-
-    function onSaveNote() {
-        // console.log(noteToAdd)
         onSetNewNote(noteToAdd)
+        setTimeout(() => {
+            clearInput()
+            setIsTodosShown(false)
+        }, 3500);
     }
 
 
-    // console.log(noteToAdd)
+    // setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, [field]: value } }))
+
+
+    // doneAt: new Date().getTime()
+
+
+    function clearInput() {
+        inputRefTitle.current.value = ''
+        inputRefContent.current.value = ''
+
+    }
+
 
     return (
         <section className="todo-note-add-container">
 
-            <form className="todo-note-add" style={noteStyle} onSubmit={handleChange} >
-                <label className="" htmlFor="title">TO DO:</label>
-                <input className="todo-input" ref={inputRef} type="text" name="title" id="title" placeholder="Title" />
+            <form className="todo-note-add" style={noteStyle} onSubmit={onSaveNote}>
+                <label className="" htmlFor="title" >TO DO:</label>
+                <input className="todo-input txt-input" onChange={handleChange} ref={inputRefTitle} type="text" name="title" id="title" placeholder="Title" />
+
+                <label className="" htmlFor="todo-content"> </label>
+                    <input className="txt-input todo-input-content" onChange={handleChange} ref={inputRefContent} type="text" name="todo-content" id="todo-content" placeholder="Todo" />
                
-                <label className="" htmlFor="todo1"></label>
-                <input className="todo-input" ref={inputRef} type="text" name="todo1" id="todo1" placeholder="todo1" />
 
-                <label className="" htmlFor="todo2"></label>
-                <input className="todo-input"ref={inputRef} type="text" name="todo2" id="todo2" placeholder="todo2" />
+                {isTodosShown && <ul>{noteToAdd.info.todos.map(todo => {
+               console.log(todo)
+                    return <li key={todo.txt}>{todo.txt}</li>
 
-                {/* <label className="" htmlFor="todo3"></label> */}
-                {/* <input className="" ref={inputRef} onChange={handleChange} type="text" name="todo3" id="todo3" placeholder="todo3" /> */}
+                })}
 
+
+
+                </ul>}
                 <button className="add-btn-todo">add</button>
             </form>
 
+            <button className="plus-btn" onClick={onAddTodo} >+</button>
+
         </section>
     )
-
 }
