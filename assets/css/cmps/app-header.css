@@ -1,15 +1,13 @@
 header {
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    background: var(--clr-4);
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-    /* padding: 20px 0; */
     height: 64px;
     align-items: center;
-    background-color: var(--clr2);
+    padding: 0 15px;
 }
 
 nav a {
@@ -17,11 +15,11 @@ nav a {
 }
 
 nav a:active {
-    color: purple;
+    color: rgb(125, 111, 125);
 }
 
 nav a.active {
-    color: darkblue;
+    color: rgb(65, 65, 72);
     font-weight: bold;
     text-decoration: overline;
 }

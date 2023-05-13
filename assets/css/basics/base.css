@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-size: 1rem;
+    font-family: lato, sans-serif;
 }
 
 h1,
@@ -22,3 +23,5 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
+
