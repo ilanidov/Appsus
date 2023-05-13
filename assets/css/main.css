@@ -6,7 +6,7 @@
 /* Basics */
 @import './basics/base.css';
 @import './basics/helpers.css';
-@import './basics/note.mq.css';
+@import './basics/mq.css';
 
 /* Views */
 @import './views/home.css';
