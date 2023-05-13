@@ -2,10 +2,12 @@
 
 
 .notes-list{
+   align-self: center;
    display: grid;
    grid-template-columns: repeat(5 , 1fr);
+   /* padding-inline-start:0 */
+   padding:0;
 }
-
 
 
 .notes-list>* {

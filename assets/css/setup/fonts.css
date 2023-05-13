@@ -5,10 +5,14 @@
 
 @font-face {
     font-family: playfair;
-    src: url(/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf);
+    src: url(../../fonts/Playfair_Display/PlayfairDisplay-Regular.ttf);
 }
 
 @font-face {
     font-family: ubuntu;
-    src: url(/fonts/Ubuntu/Ubuntu-Light.ttf);
+    src: url(../../fonts/Ubuntu/Ubuntu-Light.ttf);
+}
+@font-face {
+    font-family: inconsolata;
+    src: url(../../fonts/Inconsolata/Inconsolata-Regular.ttf);
 }

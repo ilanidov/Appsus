@@ -1,10 +1,11 @@
-const { Link, NavLink } = ReactRouterDOM
+const { Link, NavLink , useNavigate } = ReactRouterDOM
 
 export function AppHeader() {
+    const navigate = useNavigate()
 
     return <header className="app-header full">
         <Link to="/">
-            <h3>LOGO!</h3>
+            <h3 className="logo">appsus</h3>
         </Link>
         <nav>
             <NavLink to="/">Home</NavLink>
@@ -14,3 +15,5 @@ export function AppHeader() {
         </nav>
     </header>
 }
+
+// onClick={(()=> navigate('/'))}

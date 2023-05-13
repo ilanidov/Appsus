@@ -1,0 +1,28 @@
+.note-filter h2 {
+    margin: 5px;
+}
+
+.filter-by-title-input {
+    height: 1.25em;
+    margin: 7px;
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 5%;
+    border: 1px solid var(--clr1);
+}
+
+.choose-note-type,
+.filter-by-type-input {
+    border-radius: 5%;
+    border: 1px solid var(--clr1);
+    height: 1.7em;
+    cursor: pointer;
+    box-shadow: rgba(241, 245, 248, 0.2) 0px 8px 24px;
+}
+
+.filter-btn {
+    margin: 0 7px;
+    border-radius: 5%;
+    border: 1px solid var(--clr1);
+    height: 2em;
+}

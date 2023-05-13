@@ -1,9 +1,6 @@
-
-
 const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouterDOM
-
 
 import { ColorInput } from "../cmps/color-input.jsx"
 
@@ -31,11 +28,9 @@ export function AddNote({ loadNotes }) {
         loadNotes()
     }, [newNote])
 
-
     function onSetNoteStyle(newStyle) {
         setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
         setNewNote(prevNote => ({ ...prevNote, style: noteStyle }))
-        // console.log(noteStyle)
     }
 
     function onSetNewNote(noteToEdit) {
@@ -56,21 +51,18 @@ export function AddNote({ loadNotes }) {
 
     return (
         <section className="add-note-container">
+            <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
 
-            <select className="choose-note-type" onChange={(ev) => { setCmpType(ev.target.value) }}>
-                <option value="txt">txt</option>
-                <option value="image">image</option>
-                <option value="video">video</option>
-                <option value="todos">todos</option>
-            </select>
+            <section className="note-buttons">
+                <ColorInput onSetNoteStyle={onSetNoteStyle} />
 
-            <section className="add-note-functions">
-                <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
-
-                <section className="note-buttons">
-                    <ColorInput onSetNoteStyle={onSetNoteStyle} />
-                </section>
-
+                <select className="choose-note-type" onChange={(ev) => { setCmpType(ev.target.value) }}>
+                    <option value="txt">Choose note type</option>
+                    <option value="txt">Txt</option>
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                    <option value="todos">Todos</option>
+                </select>
             </section>
 
         </section>

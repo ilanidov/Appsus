@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-size: 1rem;
     font-family: lato, sans-serif;
+    background-color: var(--clr-4);
 }
 
 h1,
