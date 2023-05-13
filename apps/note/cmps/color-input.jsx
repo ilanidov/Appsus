@@ -1,6 +1,7 @@
 
 export function ColorInput({onSetNoteStyle }) {
-    const colors = ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1' , 'antiquewhite']
+    const colors = ['rgb(215, 249, 213)' , '#c2f9b3', '#F9FFA4', '#FFD59E', '#f6c5c5' ,
+     'rgb(238, 216, 219)' , 'rgb(233, 241, 248)' , 'rgb(214, 255, 252)' , ]
 
     function onChooseColor(color) {
         console.log(color)
@@ -9,10 +10,10 @@ export function ColorInput({onSetNoteStyle }) {
     }
 
     return <section className="color-input">
-        <div className="items-container">
+        <div className="colors-container">
             {
                 colors.map(color => <div
-                    className="item"
+                    className="color"
                     key={color}
                     style={{ backgroundColor: color }}
                     onClick={() => onChooseColor(color)}

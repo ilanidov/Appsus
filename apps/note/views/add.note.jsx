@@ -19,7 +19,7 @@ import { AddTodoNote } from "../cmps/todos.note.jsx"
 export function AddNote({ loadNotes }) {
 
     const [noteStyle, setNoteStyle] = useState({
-        backgroundColor: 'none',
+        backgroundColor: '#f7f7f7',
         fontSize: '16px'
     })
 
@@ -31,7 +31,7 @@ export function AddNote({ loadNotes }) {
         loadNotes()
     }, [newNote])
 
-  
+
     function onSetNoteStyle(newStyle) {
         setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
         setNewNote(prevNote => ({ ...prevNote, style: noteStyle }))
@@ -40,6 +40,7 @@ export function AddNote({ loadNotes }) {
 
     function onSetNewNote(noteToEdit) {
         noteToEdit.style = noteStyle
+
         noteService.save(noteToEdit)
             .then(() => {
                 setNewNote(noteToEdit)
@@ -54,7 +55,7 @@ export function AddNote({ loadNotes }) {
 
 
     return (
-        <section className="create-note">
+        <section className="add-note-container">
 
             <select className="choose-note-type" onChange={(ev) => { setCmpType(ev.target.value) }}>
                 <option value="txt">txt</option>
@@ -63,14 +64,14 @@ export function AddNote({ loadNotes }) {
                 <option value="todos">todos</option>
             </select>
 
-            <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote}/>
-                
+            <section className="add-note-functions">
+                <DynamicCmp cmpType={cmpType} noteStyle={noteStyle} onSetNewNote={onSetNewNote} />
+
                 <section className="note-buttons">
-                <ColorInput onSetNoteStyle={onSetNoteStyle} />
-
-
-
+                    <ColorInput onSetNoteStyle={onSetNoteStyle} />
                 </section>
+
+            </section>
 
         </section>
     )

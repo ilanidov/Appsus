@@ -31,6 +31,7 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
         setTimeout(clearInput, 3500)
     }
 
+    
     function clearInput() {
         inputRefTitle.current.value=''
         inputRefContent.current.value=''      

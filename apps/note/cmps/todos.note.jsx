@@ -8,7 +8,7 @@ import { noteService } from "../services/note.service.js"
 export function AddTodoNote({ onSetNewNote, noteStyle }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote('todo'))
-    const [todo, setTodo] = useState()
+    const [todo, setTodo] = useState({txt:'', doneAt:''})
     const [isTodosShown, setIsTodosShown] = useState(false)
 
 
@@ -39,14 +39,21 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
     }
 
     function onAddTodo() {
-        if (!todo.txt || todo.txt==='') return
+        if (!todo.txt || todo.txt === '') return
         setIsTodosShown(true)
-        setNoteToAdd(prevNote => ({...prevNote, info:
+        setNoteToAdd(prevNote => ({
+            ...prevNote, info:
                 { ...prevNote.info, todos: [...prevNote.info.todos, todo] }
         }))
         inputRefContent.current.value = ''
     }
 
+    function onCancelTodo(){
+        setIsTodosShown(false)
+        clearInput()
+        setTodo('')
+        setNoteToAdd(noteService.getEmptyNote('todo'))
+    }
 
     function onSaveNote(ev) {
         ev.preventDefault()
@@ -79,18 +86,20 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
                 <input className="todo-input txt-input" onChange={handleChange} ref={inputRefTitle} type="text" name="title" id="title" placeholder="Title" />
 
                 <label className="" htmlFor="todo-content"> </label>
-                    <input className="txt-input todo-input-content" onChange={handleChange} ref={inputRefContent} type="text" name="todo-content" id="todo-content" placeholder="Todo" />
-               
-
-                {isTodosShown && <ul>{noteToAdd.info.todos.map(todo => {
-               console.log(todo)
-                    return <li key={todo.txt}>{todo.txt}</li>
-
-                })}
+                <input className="txt-input todo-input-content" onChange={handleChange} ref={inputRefContent} type="text" name="todo-content" id="todo-content" placeholder="Todo" />
 
 
+                {isTodosShown && <section>
+                <ul> 
+                    {noteToAdd.info.todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)}
+                </ul>
+                    <button className="cancel-todo-btn" onClick={onCancelTodo} >Close</button>
 
-                </ul>}
+                
+
+                </section>
+                }
+
                 <button className="add-btn-todo">add</button>
             </form>
 

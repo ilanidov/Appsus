@@ -26,7 +26,7 @@ function addNewNote(userNote) {
         createdAt: 2023,
         type: 'noteTxt',
         isPinned: true,
-        style: { backgroundColor: '#00d' },
+        // style: { backgroundColor: '' },
         info: { title: userNote }
     }
     // console.log(note)
@@ -44,7 +44,7 @@ function getEmptyNote(type) {
                 type: 'noteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#FFD59E'
+                    backgroundColor: '#f7f7f7'
                 },
                 info: {
                     title: '',
@@ -61,7 +61,7 @@ function getEmptyNote(type) {
                     title: ''
                 },
                 style: {
-                    backgroundColor: '#F9FFA4'
+                    backgroundColor: '#f7f7f7'
                 }
             }
 
@@ -70,7 +70,7 @@ function getEmptyNote(type) {
                     type: 'noteTodos',
                     isPinned: false,
                     style: {
-                        backgroundColor: '#FFA1A1'
+                        backgroundColor: '#f7f7f7'
                     },
                     info: {
                         title: '',
@@ -152,7 +152,7 @@ function _createDemoNote() {
             type: 'noteTxt',
             isPinned: true,
             style: {
-                backgroundColor: ''
+                backgroundColor: '#f7f7f7'
             },
             info: {
                 title: 'Fullstack Me Baby!',
@@ -168,7 +168,7 @@ function _createDemoNote() {
                 title: 'Bobi and Me'
             },
             style: {
-                backgroundColor: '#F9FFA4'
+                backgroundColor: '#f7f7f7'
             }
         },
         {
@@ -176,7 +176,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: ''
+                backgroundColor: '#f7f7f7'
             },
             info: {
                 title: 'Get my stuff together',
@@ -191,7 +191,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#FFA1A1'
+                backgroundColor: '#f7f7f7'
             },
             info: {
                 title: 'Pets',
@@ -206,7 +206,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#FFA1A1'
+                backgroundColor: '#f7f7f7'
             },
             info: {
                 title: 'Monday',
@@ -221,7 +221,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#FFA1A1'
+                backgroundColor: '#f7f7f7'
             },
             info: {
                 title: 'Sunday',

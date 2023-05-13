@@ -31,42 +31,42 @@ export function NotesList({ notes, onRemoveNote }) {
 
 
     return (
-        <ul className="notes-list">
-            {notes.map(note =>
-                <li key={note.id} style={note.style}>
+        <section className="notes-list-container">
+            <ul className="notes-list">
+                {notes.map(note =>
+                    <li key={note.id} style={note.style}>
 
-                    {note.type === 'noteTxt' && 
-                    <section>
-                        <h2>{note.info.title}</h2>
-                        <p>{note.info.content} </p>
-                    </section>}
+                        {note.type === 'noteTxt' &&
+                            <section>
+                                <h2>{note.info.title}</h2>
+                                <p>{note.info.content} </p>
+                            </section>}
 
-                    {note.type === 'noteImg' && <img src={note.info.url} alt="Note image" />}
+                        {note.type === 'noteImg' && <img src={note.info.url} alt="Note image" />}
 
-                    {note.type === 'noteTodos' &&
-                        <section>
-                            <h2>{note.info.title}</h2>
-                            <ul className="note-todos">
-                                {note.info.todos.map((todo, idx) => {
-                                    const timePass = addTimeAgo(todo)
-                                    return (
-                                        <section key={idx}>
-                                            <li> {todo.txt} </li>
-                                            {todo.doneAt && <small>Done at: {timePass} </small>}      {/* CHECK BOX */}
-                                        </section>
-                                    )
-                                }
-                                )}
+                        {note.type === 'noteTodos' &&
+                            <section>
+                                <h2>{note.info.title}</h2>
+                                <ul className="note-todos">
+                                    {note.info.todos.map((todo, idx) => {
+                                        const timePass = addTimeAgo(todo)
+                                        return (
+                                            <section key={idx}>
+                                                <li> {todo.txt} </li>
+                                                {todo.doneAt && <small>Done at: {timePass} </small>}      {/* CHECK BOX */}
+                                            </section>)
+                                    })}
+                                </ul>
+                            </section>
+                        }
 
-                            </ul>
+                        <section className="notes-btns">
+                            <button onClick={() => onRemoveNote(note.id)} >Remove</button>
+                            <button><Link to={`/note/edit/${note.id}`} >Edit</Link></button>
                         </section>
-                    }
-                    <section>
-                        <button onClick={() => onRemoveNote(note.id)} >Remove</button>
-                        <button><Link to={`/note/edit/${note.id}`} >Edit</Link></button>
-                    </section>
-                </li>
-            )}
-        </ul>
+                    </li>
+                )}
+            </ul>
+        </section>
     )
 }
