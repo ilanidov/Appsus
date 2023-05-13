@@ -25,6 +25,8 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
                 const dynReadClass = email.isRead ? '' : "is-read"
                 const dynStarStyle = email.isStarred ? { color: 'yellow' } : {}
                 const timePass = emailService.addTimeAgo(email)
+                const bodyAdjust = emailService.showTxt(email.body,90)
+                const subjectAdjust = emailService.showTxt(email.subject,20)
                 return (
                     <div key={email.id} className={`email-container ${dynReadClass}`}>
 
@@ -34,9 +36,9 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
                         </section>
 
                         <section onClick={() => handleOpenMail(email)} className="email-content">
-                            <h3 title={email.from}>{email.from}</h3>
-                            <h3 title={email.subject}>{email.subject}</h3>
-                            {/* <h4 title={email.body}>{email.body}</h4> */}
+                            <h3 className="mail-from-header" title={email.from}>{email.from}</h3>
+                            <h3 className="mail-from-subject" title={email.subject}>{subjectAdjust}</h3>
+                            <h4 className="mail-from-body" title={email.body}>{bodyAdjust}</h4>
                             <span>{timePass}</span>
                         </section>
 
@@ -52,5 +54,3 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
         </div>
     )
 }
-
-

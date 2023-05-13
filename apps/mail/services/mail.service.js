@@ -13,7 +13,8 @@ export const emailService = {
     remove,
     get,
     save,
-    addTimeAgo
+    addTimeAgo,
+    showTxt
 }
 
 _createEmails()
@@ -478,14 +479,18 @@ function _createEmails() {
     return emails
 }
 
-function _createEmail() {
-    const email = getEmptyEmail()
-    email.id = utilService.makeId()
-    email.subject = utilService.makeLorem(2)
-    email.body = utilService.makeLorem(15)
-    email.sentAt = Date.now()
-    return email
-}
+// function _createEmail() {
+//     const email = getEmptyEmail()
+//     email.id = utilService.makeId()
+//     email.subject = utilService.makeLorem(2)
+//     email.body = utilService.makeLorem(15)
+//     email.sentAt = Date.now()
+//     return email
+// }
+
+function showTxt(text, wordCount) {
+     return text.substr(0, text.lastIndexOf(' ', wordCount))
+  }
 
 function getDefaultFilter(filterBy) {
     const defaultFilter = {
