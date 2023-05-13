@@ -5,7 +5,6 @@
     gap: 10px;
     padding: 5px;
     background-color: var(--clr0);
-
 }
 
 .side-filters>* {
@@ -14,18 +13,19 @@
     width: 100%;
     background-color: var(--clr2);
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     cursor: pointer;
 }
 
 .side-filters>*:hover {
-    background-color:aqua;
+    background-color:lightgray;
     border: 0.5px solid grey;
-  
+    transition: 1s;
 }
 
 .side-filters button{
     margin-left: 5px;
+    margin-top: 4.5px;
     height: 25px;
     width: 25px;
     background-position: center;
@@ -42,7 +42,15 @@
 
 .starred-btn {
     background-image: url('../../../../icons/satr.png');
-    margin-left: 0;
+}
+.read-btn {
+    background-image: url('../../../../icons/openmail.png');
+}
+.sent-btn {
+    background-image: url('../../../../icons/sent.png');
+}
+.trash-btn {
+    background-image: url('../../../../icons/trash.png');
 }
 
 

@@ -91,7 +91,7 @@ export function MailIndex() {
                 {isShown && <EmailDetails onCloseMail={onCloseMail} email={email} />}
             </div>
             {isComposeShown && <EmailCompose onSetNewCompose={onSetNewCompose} setIsComposeShown={setIsComposeShown} />}
-            <button onClick={onComposeNewMail} className='mail-compse-btn fa-solid fa-pen'></button>
+            <button onClick={onComposeNewMail} className='mail-compse-btn'></button>
         </div>
     )
 }

@@ -22,15 +22,12 @@ export function MailHeader({ onSetFilter, filterBy }) {
         <nav className="mail-nav-bar flex">
 
             <div className="mail-nav-bar-btns ">
-                <div className="nav-expand-btn"></div>
-                {/* <button className="nav-expand-btn"></button> */}
                 <div className="mail-logo-container"></div>
                 <h2 className=''>G'MAM</h2>
             </div>
 
             <div className="filter-methods">
-
-                <input value={txt} onChange={handleChange} name="txt" id="txt" type="text" placeholder="Search" />
+                <input className='mail-search-input' value={txt} onChange={handleChange} name="txt" id="txt" type="text" placeholder="Search" />
             </div>
 
         </nav>

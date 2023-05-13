@@ -9,7 +9,8 @@ export function EmailDetails({ onCloseMail, email }) {
 
     return (
         <div className="email-display">
-            <div className="flex">
+
+            <div className="flex ">
                 <h1>{email.from} </h1>
                 <button onClick={() => onCloseMail()}>Back</button>
             </div>

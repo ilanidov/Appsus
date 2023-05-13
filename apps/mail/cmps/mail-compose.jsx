@@ -40,7 +40,7 @@ export function EmailCompose({onSetNewCompose,setIsComposeShown}) {
                 <textarea name='body' onChange={handleChange} className='compose-body'></textarea>
 
                 <footer className="compose-footer">
-                    <button className='compose-send-btn'>Send</button>
+                    <button className='compose-send-btn'></button>
                 </footer>
 
             </form>

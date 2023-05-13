@@ -32,7 +32,23 @@
      border-radius: 50%;
      height: 70px;
      width: 70px;
-     background-color:aqua;
+     background-color: var(--clr2);
      bottom: 5vh;
      right: 5vh;
+     cursor: pointer;
+     background-image: url('../../../../icons/write.png');
+     background-position: center;
+     background-size: 60%;
+     background-repeat: no-repeat;
+
+
+ }
+
+ .mail-compse-btn:hover {
+    background-color: rgb(222, 236, 253);
+    transition: 0.5s;
+     height: 80px;
+     width: 80px;
+     background-size: 70%;
+
  }

@@ -43,7 +43,6 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
     return (
         <div className="mails-container">
             {emails.map(email => {
-
                 const dynReadClass = email.isRead ? '' : "is-read"
                 const dynStarStyle = email.isStarred ? { color: 'yellow' } : {}
                 const timePass = addTimeAgo(email)
@@ -63,8 +62,8 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
                         </section>
 
                         <div className="email-btns">
-                            <button onClick={() => onDeleteEmail(email.id)}>X</button>
-                            <button>RE</button>
+                            <button className='trash-mail-btn' onClick={() => onDeleteEmail(email.id)}></button>
+                            {/* <button>RE</button> */}
                         </div>
 
                     </div>

@@ -54,7 +54,6 @@ function query(filterBy = {}) {
             }
             default: {
                 emails = emails.filter((mail) => (!mail.isSent))
-                // emails = emails.filter((mail) => (!mail.isDeleted && !mail.isSent))
                 break
             }
         }
@@ -117,13 +116,11 @@ function _createEmails() {
 }
 
 function _createEmail() {
-
     const email = getEmptyEmail()
     email.id = utilService.makeId()
     email.subject = utilService.makeLorem(2)
     email.body = utilService.makeLorem(15)
     email.sentAt = Date.now()
-
     return email
 }
 
@@ -135,7 +132,8 @@ function getDefaultFilter(filterBy) {
         isRead: false,
         isSent: false,
         isStarred: false,
-        isDeleted: false
+        isDeleted: false,
+        sentAt:Date.now()
     }
     return { ...defaultFilter, ...filterBy }
 }

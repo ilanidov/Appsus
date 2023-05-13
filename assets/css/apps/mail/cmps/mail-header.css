@@ -3,6 +3,7 @@
    height: 4.5em;
    align-items: center;
    background-color: var(--clr0);
+   /* background-color: rgb(213, 232, 255); */
 }
 
 .mail-logo-container {
@@ -15,8 +16,15 @@
 .mail-nav-bar-btns {
    display: flex;
    width: 500px;
-   justify-content: space-around;
+   gap: 20px;
+   /* justify-content: space-around; */
 }
+
+.mail-nav-bar-btns>* {
+   margin-left: 20px;
+   align-self: center;
+}
+
 
 .nav-expand-btn{
    background-image: url('../../../../icons/burger-icon.png');
@@ -25,4 +33,9 @@
    background-size: cover;
    align-self: flex-start;
    justify-self: flex-start;
+}
+
+.mail-search-input{
+   width: 200%;
+   height:1.5em;
 }

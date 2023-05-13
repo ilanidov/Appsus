@@ -1,4 +1,12 @@
 
 .email-display{
     background-color: var(--clr0);
+    width: 100%;
 }
+
+.email-display>*{
+    margin-left: 20px;
+}
+
+
+
