@@ -10,9 +10,12 @@ export function MailFilter({ onSetFilter, filterBy }) {
     }, [filterByEdit])
 
     return (
-        
-        <section className="">
+
+        <section className="side-filters">
+            {/* <button className="fa-regular fa-inbox" onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}></button> */}
+            {/* <button onClick={() => {}}>Compose</button> */}
             <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}>Inbox</button>
+            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isStarred: true })) }}>Starred</button>
             <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isRead: true })) }}>read</button>
             <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isSent: true })) }}>sent</button>
             <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: true })) }}>deleted</button>

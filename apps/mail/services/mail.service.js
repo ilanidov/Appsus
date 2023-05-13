@@ -22,29 +22,26 @@ function query(filterBy = {}) {
 
         switch (true) {
 
-           
+            case filterBy.isSent: {
+                emails = emails.filter((mail) => mail.isSent)
+                break
+            }
 
             case filterBy.isRead: {
                 emails = emails.filter((mail) => mail.isRead)
                 break
             }
 
-            case filterBy.isStared: {
-                emails = emails.filter((mail) => mail.isStared)
+            case filterBy.isStarred: {
+                emails = emails.filter((mail) => mail.isStarred)
+                console.log('hi')
                 break
             }
 
 
-
-            default: {
-                emails = emails.filter((mail) => !mail.removedAt)
-                break
-            }
 
             case filterBy.txt !== undefined: {
-
                 const filterText = filterBy.txt.toLowerCase()
-
                 const checkedEmails = emails.filter(
                     (mail) =>
                         mail.body.toLowerCase().includes(filterText) ||
@@ -54,7 +51,11 @@ function query(filterBy = {}) {
 
                 if (!checkedEmails || !checkedEmails.length) return emails
                 else return checkedEmails
-
+            }
+            default: {
+                emails = emails.filter((mail) => (!mail.isSent))
+                // emails = emails.filter((mail) => (!mail.isDeleted && !mail.isSent))
+                break
             }
         }
 
@@ -65,7 +66,6 @@ function query(filterBy = {}) {
 
 function get(emailId) {
     return storageService.get(EMAIL_KEY, emailId)
-    // return axios.get(CAR_KEY, carId)
 }
 
 function remove(emailId) {

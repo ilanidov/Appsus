@@ -1,6 +1,11 @@
+const { useEffect, useState } = React
+
+import { emailService } from "../services/mail.service.js"
 
 
 export function MailList({ emails, onDeleteEmail, onOpenMail }) {
+
+    const [currEmails, setCurrEmails] = useState(emails)
 
     function handleOpenMail(email) {
         email.isRead = true
@@ -28,31 +33,32 @@ export function MailList({ emails, onDeleteEmail, onOpenMail }) {
         return timeAgo
     }
 
-    function showTxt(text,length) {
-        return text.substr(0, text.lastIndexOf(' ', length)) + ' ...'
+    function onHandleStarred(email) {
+        if (email.isStarred) email.isStarred = false
+        else email.isStarred = true
+        emailService.save(email)
+        setCurrEmails((prevMails) => prevMails.map((currMail) => (currMail.id === email.id ? email : currMail)))
     }
 
     return (
         <div className="mails-container">
             {emails.map(email => {
-                const dynReadClass = email.isRead ? '' : "is-read"
-                const timePass = addTimeAgo(email)
-                const shortenBody = showTxt(email.body,100)
 
-                console.log(shortenBody)
+                const dynReadClass = email.isRead ? '' : "is-read"
+                const dynStarStyle = email.isStarred ? { color: 'yellow' } : {}
+                const timePass = addTimeAgo(email)
                 return (
                     <div key={email.id} className={`email-container ${dynReadClass}`}>
 
                         <section className="markings">
                             <input type="checkbox" />
-                            <span className="star">⭐</span>
+                            <i className={`fa-regular fa-star`} style={dynStarStyle} onClick={() => onHandleStarred(email)}></i>
                         </section>
 
                         <section onClick={() => handleOpenMail(email)} className="email-content">
                             <h3 title={email.from}>{email.from}</h3>
                             <h3 title={email.subject}>{email.subject}</h3>
                             <h4 title={email.body}>{email.body}</h4>
-                            {/* <h4 title={email.body}>{shortenBody}</h4> */}
                             <span>{timePass}</span>
                         </section>
 

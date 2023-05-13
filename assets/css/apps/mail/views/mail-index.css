@@ -6,12 +6,7 @@
      font-family: Lato, sans-serif;
  }
 
- /* .mail-layout>* {
-     font-family: Lato, sans-serif;
- } */
-
-
- .main-content {
+ .mail-main-content {
      height: 100vh;
  }
 
@@ -32,3 +27,12 @@
      background-color: var(--clr1);
  }
 
+ .mail-compse-btn {
+     position: fixed;
+     border-radius: 50%;
+     height: 70px;
+     width: 70px;
+     background-color:aqua;
+     bottom: 5vh;
+     right: 5vh;
+ }

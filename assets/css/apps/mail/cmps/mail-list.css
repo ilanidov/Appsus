@@ -6,19 +6,22 @@
 
  .email-container {
      display: grid;
-     /* overflow: hidden; */
-
+     overflow: hidden;
+     text-overflow: ellipsis;
      grid-template-columns: 50px 1fr 70px;
      border-bottom: 1px solid black;
      align-items: center;
      height: 2.5em;
-   
+     white-space:break-spaces;
+
+
  }
 
  .email-content{
     display: grid;
     grid-template-columns: 50px 190px 1fr 150px;
-    /* overflow: hidden; */
+    overflow: hidden;
+    text-overflow: ellipsis;
     overflow-wrap: normal;
     align-items: center;
     cursor: pointer;
@@ -26,4 +29,8 @@
 
  .email-content span{
     margin-left: 10px;
+ }
+
+ .starred{
+   color: yellow;
  }
