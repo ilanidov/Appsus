@@ -18,30 +18,9 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
-    addNewNote,
-    getVideo
+    // getNextCarId,
+    addNewNote
 }
-
-function getVideo(searchValue) {
-    console.log(searchValue)
-    gCache = localStorageService.loadFromStorage(STORAGE_KEY) || null
-    // console.log(gCache)
-    if (gCache) {
-        // console.log('gCache: ', gCache)
-        const prm = Promise.resolve(gCache)
-        // console.log('prm: ', prm)
-        return prm
-    }
-
-    return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet
-    &videoEmbeddable=true&type=video&key=${YT_KEY}&q=${searchValue}`
-    )
-        .then(res => {
-            // console.log(res.data)
-            localStorageService.saveToStorage(STORAGE_KEY, res.data)
-            return res.data
-        })
-    }
 
 function addNewNote(userNote) {
     console.log(userNote)
