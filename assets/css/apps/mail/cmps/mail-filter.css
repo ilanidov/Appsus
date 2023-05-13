@@ -1,11 +1,11 @@
-.side-filters {
+/* .side-filters {
     width: 150px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 5px;
     background-color: var(--clr0);
-}
+} */
 
 .side-filters>* {
     border-radius: 25px;

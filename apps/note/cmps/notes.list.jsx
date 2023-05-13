@@ -32,8 +32,8 @@ export function NotesList({ notes, onRemoveNote }) {
 
                         {note.type === 'noteTxt' &&
                             <section>
-                                <h2 contenteditable="true">{note.info.title}</h2>
-                                <p contenteditable="true">{note.info.content} </p>
+                                <h2 contentEditable="true">{note.info.title}</h2>
+                                <p contentEditable="true">{note.info.content} </p>
                             </section>}
 
                         {note.type === 'noteImg' && <img src={note.info.url} alt="Note image" />}
@@ -46,13 +46,13 @@ export function NotesList({ notes, onRemoveNote }) {
 
                         {note.type === 'noteTodos' &&
                             <section>
-                                <h2 contenteditable="true">{note.info.title}</h2>
+                                <h2 contentEditable="true">{note.info.title}</h2>
                                 <ul className="note-todos">
                                     {note.info.todos.map((todo, idx) => {
                                         const timePass = addTimeAgo(todo)
                                         return (
                                             <section key={idx}>
-                                                <li contenteditable="true"> {todo.txt}</li>
+                                                <li contentEditable="true"> {todo.txt}</li>
                                                 {todo.doneAt && <small>Done at: {timePass} </small>}      {/* CHECK BOX */}
                                             </section>)
                                     })}

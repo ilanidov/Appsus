@@ -1,6 +1,38 @@
 /* JUST MOBILE */
 @media (max-width: 640px) {
 
+/* MAIL */
+.btn-menu{
+    font-size: 1rem;
+    width: 120px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 2em;
+
+}
+
+body.menu-open .side-filters {
+    transform: translateX(0);
+    box-shadow: -1px 1px 20px rgb(0 0 0 / 50%);
+}
+
+
+.side-filters {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background-color: rgb(230, 241, 245);
+    border-inline-start: 1px solid #ccc;
+    min-width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.6s, box-shadow 0.6s;
+}
+
+
+
+    /* NOTES */
+
     .notes-list {
         align-self: center;
         display: grid;
@@ -44,6 +76,19 @@
 
 /* SMALL 640-900 */
 @media (min-width: 640px) {
+/* MAILS */
+
+.side-filters {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+    background-color: var(--clr0);
+}
+
+
+    /* NOTES */
     .notes-list {
         align-self: center;
         display: grid;
@@ -89,6 +134,10 @@
 /* MEDIUM 900-1160 */
 
 @media (min-width: 900px) {
+    .mail-search-input{
+        width: 150%;
+        height:1.5em;
+     }
     .notes-list {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -105,6 +154,9 @@
 
 /* LARGE 1160+ */
 @media (min-width: 1160px) {
+    .mail-search-input{
+        width: 200%;
+    }
     .notes-list {
         grid-template-columns: repeat(5, 1fr);
     }

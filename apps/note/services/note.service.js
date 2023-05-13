@@ -4,7 +4,6 @@
 import { storageService } from '../../../services/async-storage.service.js'
 import { localStorageService } from '../../../services/storage.service.js'
 
-// import {} from '../../../assets/img/mazda.jpg'
 
 const NOTES_KEY = 'noteDB'
 _createNotes()
@@ -116,17 +115,6 @@ function save(note) {
     }
 }
 
-// function getNextCarId(carId) {
-//     return storageService.query(NOTES_KEY)
-//         .then((cars) => {
-//             let carIdx = cars.findIndex(car => car.id === carId)
-//             if (carIdx === cars.length - 1) carIdx = -1
-//             return cars[carIdx + 1].id
-//         })
-// }
-
-
-
 function getDefaultFilter(searchParams = { get: () => { } }) {
     return {
         title: searchParams.get('title') || '',
@@ -151,7 +139,7 @@ function _createDemoNote() {
             type: 'noteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: '#FFD59E'
             },
             info: {
                 title: 'Fullstack Me Baby!',
@@ -163,7 +151,7 @@ function _createDemoNote() {
             type: 'noteImg',
             isPinned: false,
             info: {
-                url: '../../../assets/img/mazda.jpg',
+                url: '/assets/img/mazda.jpg',
                 title: 'Bobi and Me'
             },
             style: {
@@ -175,7 +163,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: '#F9FFA4'
             },
             info: {
                 title: 'Get my stuff together',
@@ -190,7 +178,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(215, 249, 213)'
             },
             info: {
                 title: 'Pets',
@@ -205,7 +193,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(233, 241, 248)'
             },
             info: {
                 title: 'Monday',
@@ -220,7 +208,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(238, 216, 219)'
             },
             info: {
                 title: 'Sunday',

@@ -18,6 +18,9 @@ export function MailIndex() {
     const [isComposeShown, setIsComposeShown] = useState(false)
     const [newCompose, setNewCompose] = useState(emailService.getEmptyEmail())
 
+    // const [isSideOpen, setIsSideOpen] = useState(false)
+
+
 
     useEffect(() => {
         loadEmails()
@@ -76,6 +79,9 @@ export function MailIndex() {
         setIsComposeShown(isCompose => !isCompose)
     }
 
+    // function toggleMenu() {
+    //     setIsSideOpen(prevState => !prevState)
+    // }
 
 
     if (!emails || !emails.length) return <div> Loading ...</div>
@@ -86,7 +92,7 @@ export function MailIndex() {
             <MailHeader onSetFilter={onSetFilter} filterBy={filterBy} />
 
             <div className="mail-main-content flex">
-                <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+                <MailFilter onSetFilter={onSetFilter} filterBy={filterBy}/>
                 {!isShown && <MailList onOpenMail={onOpenMail} onDeleteEmail={onDeleteEmail} emails={emails} />}
                 {isShown && <EmailDetails onCloseMail={onCloseMail} email={email} />}
             </div>
