@@ -8,11 +8,8 @@ import { About } from "./views/about.jsx"
 import { Home } from "./views/home.jsx"
 import { MailIndex } from "./apps/mail/views/mail-index.jsx"
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
-// import { NoteEdit } from "./apps/note/views/note-edit.jsx";
 import { AddNote } from "./apps/note/views/add.note.jsx";
 import { EmailDetails } from "./apps/mail/cmps/mail-details.jsx";
-
-
 
 export function App() {
     return <Router>
@@ -25,18 +22,12 @@ export function App() {
                 <Route path="/mail" element={<MailIndex />} />
                 {/* <Route path="/mail/:emailId" element={<EmailDetails />} /> */}
 
-
-
-
                 <Route path="/note" element={<NoteIndex />} >
                     <Route path="/note/add" element={<AddNote />} />
-                    {/* <Route path="/note/edit/:noteId" element={<NoteEdit/>}/> */}
                 </Route>
             </Routes>
 
-
             <UserMsg />
-
         </section>
     </Router>
 }

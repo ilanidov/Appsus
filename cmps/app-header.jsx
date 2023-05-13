@@ -15,5 +15,3 @@ export function AppHeader() {
         </nav>
     </header>
 }
-
-// onClick={(()=> navigate('/'))}

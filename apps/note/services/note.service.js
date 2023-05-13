@@ -1,9 +1,6 @@
 // note service
-
-
 import { storageService } from '../../../services/async-storage.service.js'
 import { localStorageService } from '../../../services/storage.service.js'
-
 
 const NOTES_KEY = 'noteDB'
 _createNotes()
@@ -24,14 +21,11 @@ function addNewNote(userNote) {
         createdAt: 2023,
         type: 'noteTxt',
         isPinned: true,
-        // style: { backgroundColor: '' },
         info: { title: userNote }
     }
-    // console.log(note)
     return storageService.post(NOTES_KEY, note)
 
 }
-
 
 function getEmptyNote(type) {
 
@@ -77,12 +71,9 @@ function getEmptyNote(type) {
     }
 }
 
-
-// add return for 'all' option
 function query(filterBy = {}) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
-            // console.log(filterBy)
             
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
@@ -98,13 +89,12 @@ function query(filterBy = {}) {
         })
 }
 
-function get(carId) {
-    return storageService.get(NOTES_KEY, carId)
-    // return axios.get(CAR_KEY, carId)
+function get(noteId) {
+    return storageService.get(NOTES_KEY, note)
 }
 
-function remove(carId) {
-    return storageService.remove(NOTES_KEY, carId)
+function remove(noteId) {
+    return storageService.remove(NOTES_KEY, note)
 }
 
 function save(note) {
@@ -151,7 +141,7 @@ function _createDemoNote() {
             type: 'noteImg',
             isPinned: false,
             info: {
-                url: '/assets/img/mazda.jpg',
+                url: '../../assets/img/mazda.jpg',
                 title: 'Bobi and Me'
             },
             style: {

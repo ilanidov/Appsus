@@ -1,11 +1,7 @@
 
 const { useEffect, useState, useRef } = React
-const { useParams, useNavigate } = ReactRouterDOM
 
-
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-
 
 export function AddVideoNote({ onSetNewNote, noteStyle }) {
 
@@ -31,9 +27,7 @@ export function AddVideoNote({ onSetNewNote, noteStyle }) {
                 onSetNewNote(videoNote)
                 setIsVideoPLayed(true)
             })
-
     }
-
 
     return (
         <section className="video-note-container">
@@ -53,11 +47,7 @@ export function AddVideoNote({ onSetNewNote, noteStyle }) {
                 </iframe>
             }
 
-
         </section>
-
-
-
     )
 }
 

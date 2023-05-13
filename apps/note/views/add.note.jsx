@@ -1,18 +1,14 @@
 const { useEffect, useState } = React
-const { Link, useSearchParams } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouterDOM
 
 import { ColorInput } from "../cmps/color-input.jsx"
 
-import { NotesList } from "../cmps/notes.list.jsx"
-import { storageService } from "../../../services/async-storage.service.js"
 import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { AddTxtNote } from "../cmps/txt.note.jsx"
 import { AddImageNote } from "../cmps/image.note.jsx"
 import { AddTodoNote } from "../cmps/todos.note.jsx"
-import { AddVideoNote } from "../cmps/video.note.jsx"
-
+// import { AddVideoNote } from "../cmps/video.note.jsx"
 
 export function AddNote({ loadNotes }) {
 
@@ -21,7 +17,6 @@ export function AddNote({ loadNotes }) {
         fontSize: '16px'
     })
 
-    
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     const [cmpType, setCmpType] = useState('txt')
     const navigate = useNavigate()
@@ -36,7 +31,6 @@ export function AddNote({ loadNotes }) {
     }
 
     function onSetNewNote(noteToEdit) {
-        // if video no style
         noteToEdit.style = noteStyle
         noteService.save(noteToEdit)
             .then(() => {
@@ -49,7 +43,6 @@ export function AddNote({ loadNotes }) {
                 showErrorMsg('Can not save note!')
             })
     }
-
 
     return (
         <section className="add-note-container">
@@ -71,9 +64,6 @@ export function AddNote({ loadNotes }) {
     )
 }
 
-
-
-
 function DynamicCmp(props) {
     switch (props.cmpType) {
         case 'txt':
@@ -82,10 +72,8 @@ function DynamicCmp(props) {
             return <AddImageNote {...props} />
         case 'todos':
             return < AddTodoNote {...props} />
-
-        case 'video':
-            return <AddVideoNote {...props} />
-
+        //     case 'video':
+        //         return <AddVideoNote {...props} />
     }
 }
 

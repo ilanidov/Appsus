@@ -1,7 +1,6 @@
-const { useEffect, useState, useRef } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const {useState, useRef } = React
 
-import { noteService } from "../services/note.service.js"
+import {noteService } from "../services/note.service.js"
 
 export function AddTodoNote({ onSetNewNote, noteStyle }) {
 

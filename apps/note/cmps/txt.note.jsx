@@ -1,10 +1,6 @@
-const { useEffect, useState, useRef } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const {useState, useRef } = React
 
-
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-
 
 export function AddTxtNote({ onSetNewNote, noteStyle }) {
 
@@ -24,7 +20,6 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
     
     function onSaveNote(ev) {
         ev.target.value = ''
-        // console.log(noteToEdit)
         ev.preventDefault()
         onSetNewNote(noteToAdd)
         setTimeout(clearInput, 3500)
@@ -38,7 +33,6 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
     function showContentBox() {
         setIsContentShown(true)
     }
-
 
     return (
         <section className="note-add">
@@ -55,6 +49,5 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
 
         </section>
     )
-
 }
 

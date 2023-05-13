@@ -1,38 +1,23 @@
 const { useEffect, useState } = React
-const { Link, useSearchParams } = ReactRouterDOM
-const { useParams, useNavigate } = ReactRouterDOM
-
-
+const { useSearchParams } = ReactRouterDOM
 
 import { NotesList } from "../cmps/notes.list.jsx"
-import { storageService } from "../../../services/async-storage.service.js"
-import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { AddNote } from "./add.note.jsx"
 import { NotesFilter } from "../cmps/note.filter.jsx"
 
 export function NoteIndex() {
 
-
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter(searchParams))
     const [notes, setNotes] = useState([])
-    // const [newNote , setNewNote ] = useState(noteService.getEmptyNote())
-    const navigate = useNavigate()
-
-
-    // useEffect(() => {
-    //     console.log('hi')
-    //     showSuccessMsg('Welcome to notes!')
-    // }, [])
-
 
     useEffect(() => {
         loadNotes()
         setSearchParams(filterBy)
 
     }, [filterBy])
-
 
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
@@ -44,7 +29,6 @@ export function NoteIndex() {
             setNotes(updatedNotes)
             showSuccessMsg(`Note removed!`)
         })
-
     }
 
     function onSetFilter(filterBy) {

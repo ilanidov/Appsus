@@ -1,6 +1,3 @@
-
-const { Link } = ReactRouterDOM
-
 export function NotesList({ notes, onRemoveNote }) {
 
     function addTimeAgo(todo) {
@@ -38,11 +35,11 @@ export function NotesList({ notes, onRemoveNote }) {
 
                         {note.type === 'noteImg' && <img src={note.info.url} alt="Note image" />}
 
-                      {  note.type === 'noteVideo' &&
+                        {/* {  note.type === 'noteVideo' &&
                        <iframe width="220" height="200"
                        src={`https://www.youtube.com/embed/${note.info}`}>
                        </iframe>
-                      }
+                      } */}
 
                         {note.type === 'noteTodos' &&
                             <section>

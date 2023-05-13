@@ -1,4 +1,4 @@
-const { Link, NavLink , useNavigate} = ReactRouterDOM
+const {useNavigate} = ReactRouterDOM
 
 export function Home() {
     const navigate = useNavigate()
@@ -11,8 +11,8 @@ export function Home() {
         <section className="home-icons">
 
             <button className="gmail-icon-home" onClick={(()=> navigate('/mail'))}></button>
-
             <button className="notes-icon-home" onClick={(()=> navigate('/note'))}></button>
+    
         </section>
     </section>
 }

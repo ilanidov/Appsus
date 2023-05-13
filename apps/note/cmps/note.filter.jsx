@@ -18,7 +18,6 @@ export function NotesFilter({ filterBy, onSetFilter }) {
         onSetFilter(filterByToEdit)
     }
 
-
     const { title, type } = filterByToEdit
     return (
         <section className="note-filter">
@@ -32,11 +31,10 @@ export function NotesFilter({ filterBy, onSetFilter }) {
                     <option value="noteTxt">Txt</option>
                     <option value="noteImg">Image</option>
                     <option value="noteTodos">Todos</option>
-                    <option value="noteVideo">Video</option>
+                    {/* <option value="noteVideo">Video</option> */}
                 </select>
                 <button className="filter-btn">Filter notes</button>
             </form>
-        {/* <button onClick={showPinned}>pinned</button> */}
         </section>
     )
 }

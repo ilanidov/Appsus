@@ -1,16 +1,10 @@
-
 const { useEffect, useState, useRef } = React
-const { useParams, useNavigate } = ReactRouterDOM
 
-
-import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-
 
 export function AddImageNote({ onSetNewNote }) {
 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote('image'))
-    // console.log(noteToEdit)
 
     function loadImageFromInput(ev) {
         const reader = new FileReader()
@@ -40,7 +34,4 @@ export function AddImageNote({ onSetNewNote }) {
             </form>
         </section>
     )
-
-
-
 }
