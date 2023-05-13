@@ -18,14 +18,10 @@ export function MailIndex() {
     const [isComposeShown, setIsComposeShown] = useState(false)
     const [newCompose, setNewCompose] = useState(emailService.getEmptyEmail())
 
-    // const [isSideOpen, setIsSideOpen] = useState(false)
-
-
 
     useEffect(() => {
         loadEmails()
-        showSuccessMsg('')
-        // }, [email, filterBy])
+        showSuccessMsg('Welcome!')
     }, [filterBy])
 
     function onSetNewCompose(mail) {
@@ -40,7 +36,6 @@ export function MailIndex() {
             })
 
     }
-
 
     function loadEmails() {
         emailService.query(filterBy).then(setEmails)
@@ -78,10 +73,6 @@ export function MailIndex() {
     function onComposeNewMail() {
         setIsComposeShown(isCompose => !isCompose)
     }
-
-    // function toggleMenu() {
-    //     setIsSideOpen(prevState => !prevState)
-    // }
 
 
     if (!emails || !emails.length) return <div> Loading ...</div>

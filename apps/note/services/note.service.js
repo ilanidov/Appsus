@@ -1,7 +1,6 @@
 // note service
 import { storageService } from '../../../services/async-storage.service.js'
 import { localStorageService } from '../../../services/storage.service.js'
-
 const NOTES_KEY = 'noteDB'
 _createNotes()
 
@@ -90,11 +89,11 @@ function query(filterBy = {}) {
 }
 
 function get(noteId) {
-    return storageService.get(NOTES_KEY, note)
+    return storageService.get(NOTES_KEY, noteId)
 }
 
 function remove(noteId) {
-    return storageService.remove(NOTES_KEY, note)
+    return storageService.remove(NOTES_KEY, noteId)
 }
 
 function save(note) {
@@ -141,7 +140,8 @@ function _createDemoNote() {
             type: 'noteImg',
             isPinned: false,
             info: {
-                url: '../../assets/img/mazda.jpg',
+                url:"../../../assets/img/mazda.jpg",
+                // url: '../../assets/img/mazda.jpg',
                 title: 'Bobi and Me'
             },
             style: {
