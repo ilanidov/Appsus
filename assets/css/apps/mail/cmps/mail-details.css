@@ -1,12 +1,47 @@
-
-.email-display{
+.email-display {
     background-color: var(--clr0);
     width: 100%;
 }
 
-.email-display>*{
+.email-display>* {
     margin-left: 20px;
 }
 
+.mail-detail-header {
+    font-size: larger;
+    width: 50%;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
 
+.back-btn {
+    border-radius: 25px;
+    background-color: inherit;
+    border: none;
+    height: 50px;
+    width: 50px;
+    background-image: url('../../../../icons/bac.jpg');
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
 
+.back-btn:hover {
+    background-size: 100%;
+    transition: 0.5s;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.mail-sub-header{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.mail-detail-body{
+    width: 70%;
+
+}

@@ -13,6 +13,7 @@ export const emailService = {
     remove,
     get,
     save,
+    addTimeAgo
 }
 
 _createEmails()
@@ -84,7 +85,7 @@ function getEmptyEmail() {
         id: '',
         subject: '',
         body: '',
-        sentAt: null,
+        sentAt: Date.now(),
         removedAt: null,
         from: 'google',
         sendersEmail: 'momo@momo.com',
@@ -98,20 +99,382 @@ function getEmptyEmail() {
 
 function _createEmails() {
     let emails = localStorageService.loadFromStorage(EMAIL_KEY)
+
     if (!emails || !emails.length) {
 
-        emails = [
-            _createEmail(),
-            _createEmail(),
-            _createEmail(),
-            _createEmail(),
-            _createEmail(),
-            _createEmail(),
-            _createEmail(),
+
+        const emails = [
+
+
+
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Youtube',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'ChatGPT',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Amazon',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Github',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Amazon',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Youtube',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Book Depository',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Bank Yahav',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Bank',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Post Service',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Credit Score',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'JP-Morgan',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
+            {
+                id: utilService.makeId(),
+                subject: utilService.makeLorem(utilService.getRandomIntInclusive(1, 3)),
+                body: utilService.makeLorem(utilService.getRandomIntInclusive(10, 30)),
+                sentAt: Date.now() - (1000 * 60 * 60 * utilService.getRandomIntInclusive(10, 25)),
+                removedAt: null,
+                from: 'Google',
+                sendersEmail: (Math.random() > 0.5) ? 'shira@gmail.com' : 'ilan@walla.com',
+                to: 'shira@gmail.com',
+                isRead: (Math.random() > 0.8),
+                isSent: (Math.random() > 0.8),
+                isStarred: (Math.random() > 0.8),
+                isDeleted: false
+            },
         ]
         localStorageService.saveToStorage(EMAIL_KEY, emails)
-    }
 
+    }
     return emails
 }
 
@@ -133,7 +496,29 @@ function getDefaultFilter(filterBy) {
         isSent: false,
         isStarred: false,
         isDeleted: false,
-        sentAt:Date.now()
+        sentAt: Date.now()
     }
     return { ...defaultFilter, ...filterBy }
 }
+
+function addTimeAgo(email) {
+    const now = new Date().getTime()
+    const timestamp = email.sentAt
+    const diff = now - timestamp
+    const minute = 60 * 1000
+    const hour = 60 * minute
+    const day = 24 * hour
+    let timeAgo
+
+    if (diff < minute) {
+        timeAgo = Math.floor(diff / 1000) + " seconds ago"
+    } else if (diff < hour) {
+        timeAgo = Math.floor(diff / minute) + " minutes ago"
+    } else if (diff < day) {
+        timeAgo = Math.floor(diff / hour) + " hours ago"
+    } else {
+        timeAgo = Math.floor(diff / day) + " days ago"
+    }
+    return timeAgo
+}
+

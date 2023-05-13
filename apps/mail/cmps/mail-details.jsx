@@ -1,8 +1,7 @@
-const { useEffect, useState } = React
 
+import { emailService } from "../services/mail.service.js"
 
 export function EmailDetails({ onCloseMail, email }) {
-    // const [mail, setMail] = useState(email)
 
 
     if (!email) return <div>Loading.....</div>
@@ -10,17 +9,17 @@ export function EmailDetails({ onCloseMail, email }) {
     return (
         <div className="email-display">
 
-            <div className="flex ">
+            <div className="flex mail-detail-header">
                 <h1>{email.from} </h1>
-                <button onClick={() => onCloseMail()}>Back</button>
+                <button className='back-btn' onClick={() => onCloseMail()}></button>
             </div>
 
-            <div>
+            <div className="mail-sub-header">
                 <h2> {email.subject}</h2>
-                <h2>{email.sentAt}</h2>
+                <h2>{emailService.addTimeAgo(email)}</h2>
             </div>
 
-            <div>{email.body}</div>
+            <div className="mail-detail-body">{email.body}</div>
 
 
         </div>

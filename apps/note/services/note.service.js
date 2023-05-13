@@ -16,7 +16,6 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
-    // getNextCarId,
     addNewNote
 }
 

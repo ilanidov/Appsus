@@ -17,7 +17,8 @@
 
  .is-read {
    font-family: Lato;
-   background-color: rgb(222, 236, 253);
+   background-color: rgb(221, 230, 255);
+   /* background-color: rgb(222, 236, 253); */
 
 }
 
@@ -32,7 +33,8 @@
 
  .email-content {
     display: grid;
-    grid-template-columns: 80px 190px 1fr 150px;
+    grid-template-columns: 300px 1fr 150px;
+    /* grid-template-columns: 80px 190px 1fr 150px; */
     overflow: hidden;
     text-overflow: ellipsis;
     overflow-wrap: normal;

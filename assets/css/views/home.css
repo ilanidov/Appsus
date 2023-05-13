@@ -20,7 +20,6 @@
      margin-right: 25px;
      font-size: 1.2em;
      font-family: ubuntu;
-
  }
 
  .home-icons {
@@ -52,13 +51,23 @@
 
  .notes-icon-home,
  .gmail-icon-home {
-    cursor: pointer;
-     width: 50px;
-     height: 50px;
+     cursor: pointer;
+     width: 70px;
+     height: 70px;
      background-position: center;
-     background-size: 100%;
+     background-size: 80%;
      border: none;
      background-color: transparent;
      margin: 10px;
+     background-repeat: no-repeat;
+ }
 
+ .gmail-icon-home:hover {
+     background-size: 100%;
+     transition: 0.5s;
+ }
+
+ .notes-icon-home:hover{
+    background-size: 100%;
+     transition: 0.5s;
  }

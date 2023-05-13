@@ -16,7 +16,7 @@
 
  .nav-options {
      height: 100%;
-     background-color: var(--clr0);
+     background-color:aliceblue;
      flex-direction: column;
      width: 80px;
      align-items: center;
@@ -24,7 +24,7 @@
 
  .mails-container {
      width: 100%;
-     background-color: var(--clr1);
+     background-color:rgb(248, 250, 251);
  }
 
  .mail-compse-btn {
