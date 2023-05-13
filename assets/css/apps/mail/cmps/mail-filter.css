@@ -1,8 +1,53 @@
-
-.side-filters{
-    width: 100px;
+.side-filters {
+    width: 150px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     padding: 5px;
+    background-color: var(--clr0);
+
+}
+
+.side-filters>* {
+    border-radius: 25px;
+    height: 35px;
+    width: 100%;
+    background-color: var(--clr2);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.side-filters>*:hover {
+    background-color:aqua;
+    border: 0.5px solid grey;
+  
+}
+
+.side-filters button{
+    margin-left: 5px;
+    height: 25px;
+    width: 25px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: inherit;
+    border: none;
+}
+
+
+.inbox-btn {
+    background-image: url('../../../../icons/mailbox.png');
+}
+
+.starred-btn {
+    background-image: url('../../../../icons/satr.png');
+    margin-left: 0;
+}
+
+
+.side-filters h4 {
+    align-self: center;
+    margin-left: 10px;
+    width: 20px;
 }
