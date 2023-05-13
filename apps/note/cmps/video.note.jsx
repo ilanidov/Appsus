@@ -41,7 +41,7 @@ export function AddVideoNote({ onSetNewNote, noteStyle }) {
 
             </form>
 
-            {isVideoPLayed &&
+            {isPLayed &&
                 <iframe className="main-video" src={`https://www.youtube.com/embed/${videoNote.info.url}`}
                     frameBorder="0">
                 </iframe>

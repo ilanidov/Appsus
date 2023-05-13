@@ -141,7 +141,6 @@ function _createDemoNote() {
             isPinned: false,
             info: {
                 url:"../../../assets/img/mazda.jpg",
-                // url: '../../assets/img/mazda.jpg',
                 title: 'Bobi and Me'
             },
             style: {

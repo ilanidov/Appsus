@@ -55,7 +55,7 @@ export function AddNote({ loadNotes }) {
                     <option value="txt">Choose note type</option>
                     <option value="txt">Txt</option>
                     <option value="image">Image</option>
-                    <option value="video">Video</option>
+                    {/* <option value="video">Video</option> */}
                     <option value="todos">Todos</option>
                 </select>
             </section>
