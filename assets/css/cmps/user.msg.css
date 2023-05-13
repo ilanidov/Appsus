@@ -4,14 +4,15 @@
     position: absolute;
     top: 1em;
     right: 1em;
+    border-radius: 10%;
 }
 
 .user-msg.success {
-    background-color: lightgreen;
+    background-color: rgb(207, 238, 207);
 }
 
 .user-msg.error {
-    background-color: lightpink;
+    background-color: rgb(200, 130, 140);
 }
 
 

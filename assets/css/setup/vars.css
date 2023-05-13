@@ -1,0 +1,15 @@
+:root {
+    /* Palette */
+    --clr-4:rgb(249, 249, 249);
+    --clr-3:rgb(247, 247, 247);
+    --clr-2: #f0f0f0;
+    --clr-1: #b4ad9e;
+    --clr1: #626262;
+
+    /* Layout */
+    --layout-padding: 1.25rem;
+    --site-width: max-content;
+    --l: 1060px;
+    --m: 860px;
+    --s: 600px;
+}

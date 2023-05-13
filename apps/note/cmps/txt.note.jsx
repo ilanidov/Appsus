@@ -20,7 +20,6 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
         const field = target.name
         const value = target.value
         setNoteToAdd(prevNote => ({ ...prevNote, info: { ...prevNote.info, [field]: value } }))
-        
     }
     
     function onSaveNote(ev) {
@@ -30,14 +29,12 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
         onSetNewNote(noteToAdd)
         setTimeout(clearInput, 3500)
     }
-
     
     function clearInput() {
         inputRefTitle.current.value=''
         inputRefContent.current.value=''      
     }
   
-
     function showContentBox() {
         setIsContentShown(true)
     }
@@ -50,14 +47,10 @@ export function AddTxtNote({ onSetNewNote, noteStyle }) {
                 <label className="" htmlFor="title"></label>
                 <input className="note-txt-title txt-input" onClick={showContentBox} ref={inputRefTitle} onChange={handleChange} type="text" name="title" id="title" placeholder="title" />
 
-
                 <label className="" htmlFor="content"></label>
                 <input className={`note-txt-content txt-input ${dynClass}`} ref={inputRefContent} onChange={handleChange} type="text" name="content" id="content" placeholder="content" />
 
-
-                <button>add</button>
-
-
+                <button className="txt-note-btn">Add</button>
             </form>
 
         </section>

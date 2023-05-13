@@ -1,28 +1,27 @@
 .add-note-container {
-    /* background-color: rgba(242, 242, 242, 0.661); */
     width: 100%;
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 12em;
-    margin: 10px;
+    margin-top: 10px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
 }
 
-.add-note-functions {
+.note-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: row; */
     flex-direction: column;
 }
 
 .todo-input {
     height: 2em;
-    background-color: rgba(217, 214, 214, 0.431);
     border: none;
 }
 
+.txt-note-btn,
 .add-btn-todo {
     width: 30%;
     align-self: center;
@@ -30,25 +29,25 @@
 
 .choose-note-type {
     margin: 10px;
+    /* position: relative; */
+    /* bottom: 50px ; */
 }
-
 
 .note-txt-box-container {
     display: flex;
     flex-direction: column;
     gap: 5px;
     border-radius: 4%;
-    border: 1px solid rgba(69, 69, 69, 0.444);
+    border: 1px solid var(--clr1);
     padding: 10px;
     width: 30vw;
-    /* height: 10vh; */
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    height: min-content;
 }
 
 .note-txt-box {
     width: 37.5em;
     display: flex;
-
 }
 
 .todo-note-add {
@@ -58,37 +57,40 @@
     justify-content: center;
     width: 35vw;
     gap: 5px;
-    background-color: antiquewhite;
+    border-radius: 4%;
+    border: 1px solid var(--clr1);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 5px;
+    position: relative;
 }
 
-.todo-input-content {}
+.add-todo-ul {
+    height: fit-content;
+    cursor: pointer;
+}
 
-/* .todo-note-add-container{
+.cancel-todo-btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
     position: absolute;
     top: 0;
-}
- */
-
-.todo-note-add {
-    background-color: antiquewhite;
-    /* position: relative; */
-    display: flex;
-    border: 1px solid black;
+    right: 0;
 }
 
 .plus-btn {
-    /* position: absolute; */
-    bottom: 0;
-    right: 0;
-    /* position: relative;
-    height: 30px;
-    top: 20px; */
+    position: absolute;
+    cursor: pointer;
+    top: 30%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.25em;
 }
 
-
-
-
-
+.plus-btn:hover{
+    font-size: 1.4em;
+    transition: 0.2s;
+}
 
 .colors-container {
     background-color: none;
@@ -100,7 +102,6 @@
 }
 
 .color {
-    background-color: pink;
     padding: 5px;
     height: 3vh;
     width: 3vh;
@@ -122,4 +123,5 @@
     width: 100%;
     border: none;
     background-color: transparent;
+    height: 1.2em;
 }
