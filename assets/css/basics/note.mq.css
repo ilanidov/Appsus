@@ -1,0 +1,111 @@
+/* JUST MOBILE */
+@media (max-width: 640px) {
+
+    .notes-list {
+        align-self: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
+        list-style-position: inside;
+    }
+
+    .main-slogen {
+        font-size: 5em;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        font-family: lato;
+    }
+
+    .about-picture {
+        margin: 20px auto;
+        background-image: url('../../img/bench-accounting-nvzvOPQW0gc-unsplash.jpg');
+        width: 90%;
+        height: 80%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
+        border: none;
+        background-color: transparent;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .about-header {
+        height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: var(--clr1);
+        text-align: center;
+    }
+
+}
+
+/* SMALL 640-900 */
+@media (min-width: 640px) {
+    .notes-list {
+        align-self: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0;
+        list-style-position: inside;
+    }
+
+    .main-slogen {
+        font-size: 6em;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        font-family: lato;
+    }
+
+    .about-picture {
+        margin: 20px auto;
+        background-image: url('../../img/bench-accounting-nvzvOPQW0gc-unsplash.jpg');
+        width: 90%;
+        height: 80%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
+        border: none;
+        background-color: transparent;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .about-header {
+        height: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+        font-size: 1.3em;
+        color: var(--clr1);
+        text-align: center;
+
+    }
+}
+
+
+/* MEDIUM 900-1160 */
+
+@media (min-width: 900px) {
+    .notes-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .about-header {
+        font-size: 1.5em;
+    }
+
+    .main-slogen {
+        font-size: 7em;
+    }
+}
+
+
+/* LARGE 1160+ */
+@media (min-width: 1160px) {
+    .notes-list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

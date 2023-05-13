@@ -1,10 +1,7 @@
 
 const { Link } = ReactRouterDOM
 
-// import { CarPreview } from "./car-preview.jsx";
-
 export function NotesList({ notes, onRemoveNote }) {
-
 
     function addTimeAgo(todo) {
         const now = new Date().getTime()
@@ -27,9 +24,6 @@ export function NotesList({ notes, onRemoveNote }) {
         return timeAgo
     }
 
-
-
-
     return (
         <section className="notes-list-container">
             <ul className="notes-list">
@@ -38,21 +32,27 @@ export function NotesList({ notes, onRemoveNote }) {
 
                         {note.type === 'noteTxt' &&
                             <section>
-                                <h2>{note.info.title}</h2>
-                                <p>{note.info.content} </p>
+                                <h2 contenteditable="true">{note.info.title}</h2>
+                                <p contenteditable="true">{note.info.content} </p>
                             </section>}
 
                         {note.type === 'noteImg' && <img src={note.info.url} alt="Note image" />}
 
+                      {  note.type === 'noteVideo' &&
+                       <iframe width="220" height="200"
+                       src={`https://www.youtube.com/embed/${note.info}`}>
+                       </iframe>
+                      }
+
                         {note.type === 'noteTodos' &&
                             <section>
-                                <h2>{note.info.title}</h2>
+                                <h2 contenteditable="true">{note.info.title}</h2>
                                 <ul className="note-todos">
                                     {note.info.todos.map((todo, idx) => {
                                         const timePass = addTimeAgo(todo)
                                         return (
                                             <section key={idx}>
-                                                <li> {todo.txt} </li>
+                                                <li contenteditable="true"> {todo.txt}</li>
                                                 {todo.doneAt && <small>Done at: {timePass} </small>}      {/* CHECK BOX */}
                                             </section>)
                                     })}
@@ -61,8 +61,7 @@ export function NotesList({ notes, onRemoveNote }) {
                         }
 
                         <section className="notes-btns">
-                            <button onClick={() => onRemoveNote(note.id)} >Remove</button>
-                            <button><Link to={`/note/edit/${note.id}`} >Edit</Link></button>
+                            <button className="remove-note-btn" onClick={() => onRemoveNote(note.id)} ></button>
                         </section>
                     </li>
                 )}

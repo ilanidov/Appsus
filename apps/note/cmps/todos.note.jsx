@@ -11,6 +11,7 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
 
     const inputRefTitle = useRef()
     const inputRefContent = useRef()
+    const inputRefUl = useRef()
 
     function handleChange({ target }) {
         setNoteToAdd(prevNote => ({ ...prevNote, style: noteStyle }))
@@ -41,8 +42,6 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
     function onCancelTodo(){
         setIsTodosShown(false)
         clearInput()
-        setTodo('')
-        setNoteToAdd(noteService.getEmptyNote('todo'))
     }
 
     function onSaveNote(ev) {
@@ -57,7 +56,9 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
     function clearInput() {
         inputRefTitle.current.value = ''
         inputRefContent.current.value = ''
-    }
+        setTodo('')
+        setNoteToAdd(noteService.getEmptyNote('todo'))   
+     }
 
     return (
         <section className="todo-note-add-container">
@@ -69,8 +70,8 @@ export function AddTodoNote({ onSetNewNote, noteStyle }) {
                 <label className="" htmlFor="todo-content"> </label>
                 <input className="txt-input todo-input-content" onChange={handleChange} ref={inputRefContent} type="text" name="todo-content" id="todo-content" placeholder="Todo" />
 
-                {isTodosShown && <section>
-                <ul className="add-todo-ul"> 
+                {isTodosShown && <section className="todo-ul-container">
+                <ul className="add-todo-ul" ref={inputRefUl}> 
                     {noteToAdd.info.todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)}
                 </ul>
                     <button className="cancel-todo-btn" onClick={onCancelTodo} >x</button>

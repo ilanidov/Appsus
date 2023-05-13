@@ -14,6 +14,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 35vw;
+
 }
 
 .todo-input {
@@ -21,6 +23,24 @@
     border: none;
 }
 
+
+.file-upload-btn {
+    width: 30px;
+    height: 30px;
+    background-color: aquamarine;
+    
+}
+
+
+.file-input-btn {
+    position: relative;
+    width: 100%;
+    height:  100%;
+    cursor: pointer;
+}
+
+
+.add-image-btn,
 .txt-note-btn,
 .add-btn-todo {
     width: 30%;
@@ -33,6 +53,7 @@
     /* bottom: 50px ; */
 }
 
+.video-note-container,
 .note-txt-box-container {
     display: flex;
     flex-direction: column;
@@ -40,7 +61,7 @@
     border-radius: 4%;
     border: 1px solid var(--clr1);
     padding: 10px;
-    width: 30vw;
+    width: 35vw;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     height: min-content;
 }
@@ -81,14 +102,14 @@
 .plus-btn {
     position: absolute;
     cursor: pointer;
-    top: 30%;
+    top: 35%;
     border: none;
     background-color: transparent;
     font-size: 1.25em;
 }
 
-.plus-btn:hover{
-    font-size: 1.4em;
+.plus-btn:hover {
+    font-size: 1.35em;
     transition: 0.2s;
 }
 

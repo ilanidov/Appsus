@@ -18,6 +18,7 @@ export function NotesFilter({ filterBy, onSetFilter }) {
         onSetFilter(filterByToEdit)
     }
 
+
     const { title, type } = filterByToEdit
     return (
         <section className="note-filter">
@@ -26,7 +27,6 @@ export function NotesFilter({ filterBy, onSetFilter }) {
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="title"></label>
                 <input className="filter-by-title-input" value={title} onChange={handleChange} name="title" id="title" type="text" placeholder="By title" />
-
                 <select className="filter-by-type-input" value={type} onChange={handleChange} name="type" id="type"  >
                     <option value="all">All</option>
                     <option value="noteTxt">Txt</option>
@@ -36,7 +36,8 @@ export function NotesFilter({ filterBy, onSetFilter }) {
                 </select>
                 <button className="filter-btn">Filter notes</button>
             </form>
-
+        {/* <button onClick={showPinned}>pinned</button> */}
         </section>
     )
 }
+

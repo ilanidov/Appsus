@@ -1,16 +1,6 @@
  /* note list */
 
-
-.notes-list{
-   align-self: center;
-   display: grid;
-   grid-template-columns: repeat(5 , 1fr);
-   /* padding-inline-start:0 */
-   padding:0;
-}
-
-
-.notes-list>* {
+ .notes-list>* {
     list-style-type: none;
     height: min-content;
     width: 80%;
@@ -20,12 +10,27 @@
     border: 1px solid #e7e6e6;
  }
 
- img {
-    width: 100%;
-    height: 100%;
+
+ .note-todos {
+    margin: 5px;
+    padding: 5px;
  }
 
- .notes-btns{
-   padding: 5px;
-   margin: 5px 5px 0 5px;
+ .remove-note-btn {
+    background-image: url('../../../../icons/trash.png');
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-size: 100%;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    left: 80%;
+ }
+
+
+ .notes-btns {
+    padding: 5px;
+    margin: 5px 5px 0 5px;
  }

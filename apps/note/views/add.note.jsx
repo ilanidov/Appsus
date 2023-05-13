@@ -11,6 +11,7 @@ import { noteService } from "../services/note.service.js"
 import { AddTxtNote } from "../cmps/txt.note.jsx"
 import { AddImageNote } from "../cmps/image.note.jsx"
 import { AddTodoNote } from "../cmps/todos.note.jsx"
+import { AddVideoNote } from "../cmps/video.note.jsx"
 
 
 export function AddNote({ loadNotes }) {
@@ -20,9 +21,10 @@ export function AddNote({ loadNotes }) {
         fontSize: '16px'
     })
 
+    
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
-    const navigate = useNavigate()
     const [cmpType, setCmpType] = useState('txt')
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadNotes()
@@ -34,8 +36,8 @@ export function AddNote({ loadNotes }) {
     }
 
     function onSetNewNote(noteToEdit) {
+        // if video no style
         noteToEdit.style = noteStyle
-
         noteService.save(noteToEdit)
             .then(() => {
                 setNewNote(noteToEdit)
@@ -80,6 +82,9 @@ function DynamicCmp(props) {
             return <AddImageNote {...props} />
         case 'todos':
             return < AddTodoNote {...props} />
+
+        case 'video':
+            return <AddVideoNote {...props} />
 
     }
 }

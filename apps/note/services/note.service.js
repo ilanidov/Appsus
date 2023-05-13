@@ -1,12 +1,14 @@
 // note service
 
-
 import { storageService } from '../../../services/async-storage.service.js'
 import { localStorageService } from '../../../services/storage.service.js'
 
-// import {} from '../../../assets/img/mazda.jpg'
-
+const YT_KEY = 'AIzaSyC0tglp4Hly2C0t0UWo5QZdJ_A4c5OJO5U'
+const STORAGE_KEY = 'musicDB'
 const NOTES_KEY = 'noteDB'
+let gCache 
+let gValue = 'dogs'
+
 _createNotes()
 
 export const noteService = {
@@ -16,9 +18,30 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
-    // getNextCarId,
-    addNewNote
+    addNewNote,
+    getVideo
 }
+
+function getVideo(searchValue) {
+    console.log(searchValue)
+    gCache = localStorageService.loadFromStorage(STORAGE_KEY) || null
+    // console.log(gCache)
+    if (gCache) {
+        // console.log('gCache: ', gCache)
+        const prm = Promise.resolve(gCache)
+        // console.log('prm: ', prm)
+        return prm
+    }
+
+    return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet
+    &videoEmbeddable=true&type=video&key=${YT_KEY}&q=${searchValue}`
+    )
+        .then(res => {
+            // console.log(res.data)
+            localStorageService.saveToStorage(STORAGE_KEY, res.data)
+            return res.data
+        })
+    }
 
 function addNewNote(userNote) {
     console.log(userNote)
@@ -26,12 +49,9 @@ function addNewNote(userNote) {
         createdAt: 2023,
         type: 'noteTxt',
         isPinned: true,
-        // style: { backgroundColor: '' },
         info: { title: userNote }
     }
-    // console.log(note)
     return storageService.post(NOTES_KEY, note)
-
 }
 
 
@@ -64,6 +84,18 @@ function getEmptyNote(type) {
                     backgroundColor: '#f7f7f7'
                 }
             }
+            case 'video':
+                return {
+                    type: 'noteVideo',
+                    isPinned: false,
+                    info: {
+                        url: '',
+                        title: ''
+                    },
+                    style: {
+                        backgroundColor: '#f7f7f7'
+                    }
+                }
 
             case 'todo':
                 return {
@@ -79,13 +111,9 @@ function getEmptyNote(type) {
     }
 }
 
-
-// add return for 'all' option
 function query(filterBy = {}) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
-            // console.log(filterBy)
-            
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
                 notes = notes.filter(note => regExp.test(note.info.title))
@@ -100,13 +128,12 @@ function query(filterBy = {}) {
         })
 }
 
-function get(carId) {
-    return storageService.get(NOTES_KEY, carId)
-    // return axios.get(CAR_KEY, carId)
+function get(noteId) {
+    return storageService.get(NOTES_KEY, noteId)
 }
 
-function remove(carId) {
-    return storageService.remove(NOTES_KEY, carId)
+function remove(noteId) {
+    return storageService.remove(NOTES_KEY, noteId)
 }
 
 function save(note) {
@@ -116,17 +143,6 @@ function save(note) {
         return storageService.post(NOTES_KEY, note)
     }
 }
-
-// function getNextCarId(carId) {
-//     return storageService.query(NOTES_KEY)
-//         .then((cars) => {
-//             let carIdx = cars.findIndex(car => car.id === carId)
-//             if (carIdx === cars.length - 1) carIdx = -1
-//             return cars[carIdx + 1].id
-//         })
-// }
-
-
 
 function getDefaultFilter(searchParams = { get: () => { } }) {
     return {
@@ -152,7 +168,7 @@ function _createDemoNote() {
             type: 'noteTxt',
             isPinned: true,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(233, 241, 248)'
             },
             info: {
                 title: 'Fullstack Me Baby!',
@@ -176,7 +192,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(215, 249, 213)'
             },
             info: {
                 title: 'Get my stuff together',
@@ -191,7 +207,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: '#F9FFA4'
             },
             info: {
                 title: 'Pets',
@@ -206,7 +222,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: 'rgb(238, 216, 219)'
             },
             info: {
                 title: 'Monday',
@@ -221,7 +237,7 @@ function _createDemoNote() {
             type: 'noteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7f7'
+                backgroundColor: '#FFD59E'
             },
             info: {
                 title: 'Sunday',
