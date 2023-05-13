@@ -12,13 +12,28 @@ export function MailFilter({ onSetFilter, filterBy }) {
     return (
 
         <section className="side-filters">
-            {/* <button className="fa-regular fa-inbox" onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}></button> */}
-            {/* <button onClick={() => {}}>Compose</button> */}
-            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}>Inbox</button>
-            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isStarred: true })) }}>Starred</button>
-            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isRead: true })) }}>read</button>
-            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isSent: true })) }}>sent</button>
-            <button onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: true })) }}>deleted</button>
+            
+            <article onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: false })) }}>
+                <button className='inbox-btn'></button>
+                <h4>Inbox</h4>
+            </article>
+
+            <article onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isStarred: true })) }}>
+                <button className='starred-btn'>Starred</button>
+            </article>
+
+            <article onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isRead: true })) }}>
+                <button className='read-btn' >read</button>
+            </article>
+
+            <article  onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isSent: true })) }}>
+                <button className='sent-btn'>sent</button>
+            </article>
+
+            <article onClick={() => { setFilterByEdit(emailService.getDefaultFilter({ isDeleted: true })) }}>
+                <button className='trash-btn' >deleted</button>
+            </article>
+
         </section>
     )
 }
